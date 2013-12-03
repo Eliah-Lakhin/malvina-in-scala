@@ -40,7 +40,7 @@ object ProjectBuildConfig extends Build {
 
         libraryDependencies ++= Seq(
           "org.scalatest" %% "scalatest" % "2.0.M6-SNAP8" % "test",
-          "name.lakhin.eliah.projects.papacarlo" %% "papa-carlo" % "0.4.+"
+          "name.lakhin.eliah.projects.papacarlo" %% "papa-carlo" % "0.5.+"
         ),
         resolvers ++= Seq(
           "sonatype" at "http://oss.sonatype.org/content/repositories/releases",
