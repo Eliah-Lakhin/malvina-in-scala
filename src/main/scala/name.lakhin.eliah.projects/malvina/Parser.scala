@@ -108,12 +108,12 @@ final class Parser {
     ).mutable
 
     keywords("true", "false", "null", "lazy", "if", "else", "loop", "break",
-      "return", "new", "as", "export", "type", "function", "static",
+      "return", "new", "as", "this", "export", "type", "function", "static",
       "translate", "in", "module")
 
     terminals("{", "}", "[", "]", "(", ")", ">=", "<=", "==", ">", "<", "=>",
-      "->", "=", "+=", "+", "-", "|", "&", ";", "*", "%", ":", "?", "!=",
-      "!", ",", ".", "@", "/*", "*/", "//")
+      "->", "=", "+=", "+", "-", "|", "&", ";", "%", ":", "?", "!=", "!", ",",
+      ".", "@", "/*", "*/", "*", "/", "//")
 
     tokenizer
   }
@@ -150,58 +150,6 @@ final class Parser {
       )
     }
 
-    val functionDeclaration = rule("function declaration") {
-      sequence(
-        token("function"),
-        capture("name", token("id")),
-        branch("parameters", methodParameters),
-        optional(sequence(token(":"), branch("result", typeApplication))),
-        choice(branch("body", block), token(";").permissive)
-      )
-    }
-
-    val typeDeclaration = rule("type declaration") {
-      sequence(
-        token("type"),
-        capture("name", token("Id")),
-        optional(branch("pattern", typePattern)),
-        choice(branch("constructor", constructor), token(";").permissive)
-      )
-    }
-
-    val staticDeclaration = rule("static declaration") {
-      sequence(
-        token("static"),
-        capture("name", token("Id")),
-        sequence(token(":"), branch("result", typeApplication)).permissive,
-        sequence(token("="), branch("value", expression)).permissive,
-        token(";").permissive
-      )
-    }
-
-    val translator = rule("translator") {
-      sequence(
-        token("translate"),
-        choice(
-          branch("function", functionReference),
-          branch("type", typeReference),
-          capture("module", token("module"))
-        ),
-        sequence(
-          token("in"),
-          capture("language", token("Id"))
-        ).permissive,
-        choice(
-          sequence(
-            token("="),
-            branch("value", expression),
-            token(";").permissive
-          ),
-          branch("definition", block)
-        ).permissive
-      )
-    }
-
     val functionReference = rule("function reference") {
       sequence(
         capture("name", token("id")),
@@ -226,13 +174,6 @@ final class Parser {
       )
     }
 
-    val moduleDefinition = rule("module declaration") {
-      sequence(
-        token("module"),
-        branch("definition", block)
-      )
-    }
-
     val constructor = rule("constructor") {
       sequence(
         branch("parameters", methodParameters),
@@ -246,7 +187,7 @@ final class Parser {
         zeroOrMore(branch("statement", choice(propertyDefinition,
           binaryBranching, multipleBranching, loop, returnStatement,
           breakStatement, variableDefinition, expressionStatement))),
-        token("}")
+        token("}").permissive
       )
     }
 
@@ -304,10 +245,6 @@ final class Parser {
       )
     }
 
-    val moduleReference = name("module reference") {
-      sequence(token("@"), capture("module", token("id")))
-    }
-
     val typeParameters: NamedRule = rule("type parameters") {
       sequence(
         token("<"),
@@ -318,13 +255,10 @@ final class Parser {
 
     val expression: NamedRule = rule("expression") {
       val operators = new Operators(Rule.expression(branch("operand",
-        atom.permissive("operand required"))))
+        operand.permissive("operand required"))))
 
       operators.rule
     }
-
-    val atom = choice(array, integer, float, string, nullLiteral,
-      thisReference, application, function, variable)
 
     val array = rule("array") {
       sequence(
@@ -474,10 +408,10 @@ final class Parser {
         token("(").permissive,
         branch("conditions", conditions),
         token(")").permissive,
-        branch("success", statementBody),
+        branch("success", bodyStatement),
         optional(sequence(
           token("else"),
-          branch("fail", statementBody)
+          branch("fail", bodyStatement)
         ))
       )
     }
@@ -486,10 +420,7 @@ final class Parser {
        oneOrMore(
          sequence(
            branch("expression", expression),
-           optional(sequence(
-             token("as"),
-             capture("variable", token("Id"))
-           ))
+           optional(sequence(token("as"), capture("variable", token("id"))))
          ),
          separator = token(",")
        )
@@ -502,7 +433,7 @@ final class Parser {
         oneOrMore(sequence(
           branch("conditions", choice(conditions, defaultCondition)),
           token(":").permissive,
-          branch("body", statementBody)
+          branch("body", bodyStatement)
         )),
         token("}").permissive
       )
@@ -514,12 +445,9 @@ final class Parser {
         token("(").permissive,
         branch("conditions", conditions),
         token(")").permissive,
-        branch("body", statementBody)
+        branch("body", bodyStatement)
       )
     }
-
-    val statementBody = choice(block, binaryBranching, multipleBranching, loop,
-      returnStatement, breakStatement, expressionStatement)
 
     val returnStatement = rule("return") {
       sequence(
@@ -548,10 +476,83 @@ final class Parser {
       sequence(
         branch("expression", expression),
         token(";").permissive
-      )
+      ).required
     }
 
     val defaultCondition = rule("default condition") {token("else")}
+
+    val operand = name("operand") {
+      choice(array, integer, float, string, nullLiteral, thisReference,
+        application, function, variable)
+    }
+
+    val bodyStatement = name("body statement") {
+      choice(block, binaryBranching, multipleBranching, loop, returnStatement,
+        breakStatement, expressionStatement)
+    }
+
+    val moduleReference = name("module reference") {
+      sequence(token("@"), capture("module", token("id")))
+    }
+
+    val functionDeclaration = name("function declaration") {
+      sequence(
+        capture("declaration", token("function")),
+        capture("name", token("id")),
+        branch("parameters", methodParameters),
+        optional(sequence(token(":"), branch("result", typeApplication))),
+        choice(branch("body", block), token(";").permissive)
+      )
+    }
+
+    val typeDeclaration = name("type declaration") {
+      sequence(
+        capture("declaration", token("type")),
+        capture("name", token("Id")),
+        optional(branch("pattern", typePattern)),
+        choice(branch("constructor", constructor), token(";").permissive)
+      )
+    }
+
+    val staticDeclaration = name("static declaration") {
+      sequence(
+        capture("declaration", token("static")),
+        capture("name", token("Id")),
+        sequence(token(":"), branch("result", typeApplication)).permissive,
+        sequence(token("="), branch("value", expression)).permissive,
+        token(";").permissive
+      )
+    }
+
+    val translator = name("translator") {
+      sequence(
+        capture("declaration", token("translate")),
+        choice(
+          branch("function", functionReference),
+          branch("type", typeReference),
+          capture("module", token("module"))
+        ),
+        sequence(
+          token("in"),
+          capture("language", token("Id"))
+        ).permissive,
+        choice(
+          sequence(
+            token("="),
+            branch("value", expression),
+            token(";").permissive
+          ),
+          branch("definition", block)
+        ).permissive
+      )
+    }
+
+    val moduleDefinition = name("module definition") {
+      sequence(
+        capture("declaration", token("module")),
+        branch("definition", block)
+      )
+    }
   }.syntax
 
   private class Operators(val rule: ExpressionRule) {
