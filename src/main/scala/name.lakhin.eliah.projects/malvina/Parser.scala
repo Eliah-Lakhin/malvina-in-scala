@@ -225,7 +225,7 @@ final class Parser {
     val methodParameter = rule("method parameter") {
       sequence(
         optional(capture("lazy", token("lazy"))),
-        capture("name", token("id")),
+        capture("name", choice(token("id"), token("this"))),
         sequence(
           token(":"),
           branch("type", typeApplication)
@@ -319,7 +319,7 @@ final class Parser {
         capture("name", token("id")),
         optional(sequence(
           token("@"),
-          capture("package", token("name")).permissive
+          capture("package", token("id")).permissive
         )),
         token("("),
         zeroOrMore(branch("argument", argument)),
@@ -463,11 +463,13 @@ final class Parser {
 
     val variableDefinition = rule("variable definition") {
       sequence(
-        capture("name", token("name")),
+        capture("name", token("id")),
         token(":"),
         optional(capture("type", typeApplication)),
-        token("=").permissive,
-        branch("value", expression).permissive,
+        sequence(
+          token("="),
+          branch("value", expression)
+        ).permissive,
         token(";").permissive
       )
     }
