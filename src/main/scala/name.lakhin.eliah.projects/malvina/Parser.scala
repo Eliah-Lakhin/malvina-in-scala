@@ -312,6 +312,17 @@ final class Parser {
         .node
     }
 
+    val booleanLiteral = rule("boolean") {
+      capture("name", choice(token("true"), token("false")))
+    }
+
+    intercept(booleanLiteral) {
+      _.accessor
+        .setKind("application")
+        .setConstant("name", "boolean")
+        .node
+    }
+
     val thisReference = rule("this") {token("this")}
 
     val application = rule("application") {
@@ -319,18 +330,18 @@ final class Parser {
         capture("name", token("id")),
         optional(sequence(
           token("@"),
-          capture("package", token("id")).permissive
+          capture("module", token("id")).permissive
         )),
         token("("),
-        zeroOrMore(branch("argument", argument)),
+        zeroOrMore(branch("argument", argument), token(",")),
         token(")").permissive
       )
     }
 
     val argument = rule("argument") {
       sequence(
-        optional(sequence(capture("name", token("token")), token(":"))),
-        branch("value", expression)
+        optional(sequence(capture("name", token("id")), token(":"))),
+        branch("value", expression).required
       )
     }
 
@@ -484,8 +495,8 @@ final class Parser {
     val defaultCondition = rule("default condition") {token("else")}
 
     val operand = name("operand") {
-      choice(array, integer, float, string, nullLiteral, thisReference,
-        application, function, variable)
+      choice(array, integer, float, string, nullLiteral, booleanLiteral,
+        thisReference, application, function, variable)
     }
 
     val bodyStatement = name("body statement") {

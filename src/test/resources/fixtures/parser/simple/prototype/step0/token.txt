@@ -1,0 +1,9 @@
+export~0~ type `Id`<`type variable`, `type variable`>(`id`: `Id`<`type variable`, `Id`>) {~3:0~
+    this.`id`: `Id`<`Id`<`type variable`, `type variable`>> = `id`();
+    this.`id`: `Id`<`type variable`, `Id`> = `id`;
+}
+~0~
+export function `id`(this: `Id`<`type variable`, `type variable`>, `id`: `type variable`): `Id` {~3:0~
+    return false;
+}
+~0~

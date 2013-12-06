@@ -1,0 +1,538 @@
+ > create:
+declaration:2
+<<<export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}>>>
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type pattern:3
+export type Hashtable<<<<A, B>>>>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+constructor:4
+export type Hashtable<A, B><<<(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}>>>
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+method parameters:5
+export type Hashtable<A, B><<<(hash: Function1<A, Integer>)>>> {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+method parameter:6
+export type Hashtable<A, B>(<<<hash: Function1<A, Integer>>>>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:7
+export type Hashtable<A, B>(hash: <<<Function1<A, Integer>>>>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type parameters:8
+export type Hashtable<A, B>(hash: Function1<<<<A, Integer>>>>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:9
+export type Hashtable<A, B>(hash: Function1<<<<A>>>, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:10
+export type Hashtable<A, B>(hash: Function1<A, <<<Integer>>>>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+constructor body:11 cachable
+export type Hashtable<A, B>(hash: Function1<A, Integer>) <<<{
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}>>>
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+property:12
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    <<<this.elements: Array<Tuple2<A, B>> = emptyArray();>>>
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:13
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: <<<Array<Tuple2<A, B>>>>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type parameters:14
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<<<<Tuple2<A, B>>>>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:15
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<<<<Tuple2<A, B>>>>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type parameters:16
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<<<<A, B>>>>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:17
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<<<<A>>>, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:18
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, <<<B>>>>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:19
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = <<<emptyArray()>>>;
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+property:20
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    <<<this.hash: Function1<A, Integer> = hash;>>>
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:21
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: <<<Function1<A, Integer>>>> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type parameters:22
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<<<<A, Integer>>>> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:23
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<<<<A>>>, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:24
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, <<<Integer>>>> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+variable:25
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = <<<hash>>>;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+declaration:26
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+<<<export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}>>>
+
+
+ > create:
+method parameters:27
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains<<<(this: Hashtable<A, B>, element: A)>>>: Boolean {
+    return false;
+}
+
+
+ > create:
+method parameter:28
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(<<<this: Hashtable<A, B>>>>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:29
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: <<<Hashtable<A, B>>>>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type parameters:30
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<<<<A, B>>>>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:31
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<<<<A>>>, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:32
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, <<<B>>>>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+method parameter:33
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, <<<element: A>>>): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:34
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: <<<A>>>): Boolean {
+    return false;
+}
+
+
+ > create:
+type application:35
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): <<<Boolean>>> {
+    return false;
+}
+
+
+ > create:
+block:36 cachable
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean <<<{
+    return false;
+}>>>
+
+
+ > create:
+return:37
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    <<<return false;>>>
+}
+
+
+ > merge:
+compilation unit 1 {
+  declaration: declaration 2 >> 1 {
+    export: export
+    name: Hashtable
+    declaration: type
+    pattern: type pattern 3 >> 2 {
+      variable: BA
+    }
+    constructor: constructor 4 >> 2 {
+      parameters: method parameters 5 >> 4 {
+        parameter: method parameter 6 >> 5 {
+          name: hash
+          type: type application 7 >> 6 {
+            type: Function1
+            parameters: type parameters 8 >> 7 {
+              parameter: type application 9 >> 8 {
+                type: A
+              }
+              parameter: type application 10 >> 8 {
+                type: Integer
+              }
+            }
+          }
+        }
+      }
+      body: constructor body 11 cachable >> 4 {
+        statement: property 12 >> 11 {
+          name: elements
+          type: type application 13 >> 12 {
+            type: Array
+            parameters: type parameters 14 >> 13 {
+              parameter: type application 15 >> 14 {
+                type: Tuple2
+                parameters: type parameters 16 >> 15 {
+                  parameter: type application 17 >> 16 {
+                    type: A
+                  }
+                  parameter: type application 18 >> 16 {
+                    type: B
+                  }
+                }
+              }
+            }
+          }
+          value: application 19 >> 12 {
+            name: emptyArray
+          }
+        }
+        statement: property 20 >> 11 {
+          name: hash
+          type: type application 21 >> 20 {
+            type: Function1
+            parameters: type parameters 22 >> 21 {
+              parameter: type application 23 >> 22 {
+                type: A
+              }
+              parameter: type application 24 >> 22 {
+                type: Integer
+              }
+            }
+          }
+          value: variable 25 >> 20 {
+            name: hash
+          }
+        }
+      }
+    }
+  }
+  declaration: declaration 26 >> 1 {
+    export: export
+    name: contains
+    declaration: function
+    parameters: method parameters 27 >> 26 {
+      parameter: method parameter 28 >> 27 {
+        name: this
+        type: type application 29 >> 28 {
+          type: Hashtable
+          parameters: type parameters 30 >> 29 {
+            parameter: type application 31 >> 30 {
+              type: A
+            }
+            parameter: type application 32 >> 30 {
+              type: B
+            }
+          }
+        }
+      }
+      parameter: method parameter 33 >> 27 {
+        name: element
+        type: type application 34 >> 33 {
+          type: A
+        }
+      }
+    }
+    result: type application 35 >> 26 {
+      type: Boolean
+    }
+    body: block 36 cachable >> 26 {
+      statement: return 37 >> 36 {
+        value: false
+      }
+    }
+  }
+}
+
