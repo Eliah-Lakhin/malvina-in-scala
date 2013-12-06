@@ -16,11 +16,11 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.papacarlo.lexis.{Token, Contextualizer,
-  Matcher, Tokenizer}
+import name.lakhin.eliah.projects.papacarlo.lexis._
 import name.lakhin.eliah.projects.papacarlo.{Syntax, Lexer}
-import name.lakhin.eliah.projects.papacarlo.syntax.{NodeAccessor, Node, Rule}
-import name.lakhin.eliah.projects.papacarlo.syntax.rules.{NamedRule, ExpressionRule, ChoiceRule}
+import name.lakhin.eliah.projects.papacarlo.syntax.{Node, Rule}
+import name.lakhin.eliah.projects.papacarlo.syntax.rules.NamedRule
+import name.lakhin.eliah.projects.papacarlo.syntax.rules.ExpressionRule
 
 final class Parser {
   private def tokenizer = {
@@ -112,8 +112,8 @@ final class Parser {
       "translate", "in", "module")
 
     terminals("{", "}", "[", "]", "(", ")", ">=", "<=", "==", ">", "<", "=>",
-      "->", "=", "+=", "+", "-", "|", "&", ";", "%", ":", "?", "!=", "!", ",",
-      ".", "@", "/*", "*/", "*", "/", "//")
+      "->", "=", "+=", "+", "-", "|", "&", ";", ":", "?", "!=", "!", ",", ".",
+      "@", "/*", "*/", "*", "/", "//")
 
     tokenizer
   }
@@ -177,7 +177,7 @@ final class Parser {
     val constructor = rule("constructor") {
       sequence(
         branch("parameters", methodParameters),
-        branch("body", constructorBody)
+        branch("body", constructorBody.debug)
       )
     }
 
@@ -256,6 +256,24 @@ final class Parser {
     val expression: NamedRule = rule("expression") {
       val operators = new Operators(Rule.expression(branch("operand",
         operand.permissive("operand required"))))
+
+      operators.defineGroup("Tuple")
+      operators.definePrefix("!", "not", 4)
+      operators.definePrefix("-", "minus", 4)
+      operators.defineInfix("*", "multiply", 5)
+      operators.defineInfix("/", "divide", 5)
+      operators.defineInfix("+", "plus", 6)
+      operators.defineInfix("-", "minus", 6)
+      operators.defineInfix("->", "arrow", 7)
+      operators.defineInfix(">", "greater", 8)
+      operators.defineInfix(">=", "greaterOrEqual", 8)
+      operators.defineInfix("<", "lesser", 8)
+      operators.defineInfix("<=", "lesserOrEqual", 8)
+      operators.defineInfix("==", "equal", 9)
+      operators.defineInfix("&", "and", 10)
+      operators.defineInfix("|", "or", 10)
+      operators.defineInfix("=", "", 17)
+      operators.defineTernary("condition", 15)
 
       operators.rule
     }
@@ -573,7 +591,7 @@ final class Parser {
                     function: String,
                     precedence: Int,
                     right: Boolean = false) {
-      val leftBindingPower = Int.MaxValue - precedence * 10
+      val leftBindingPower = bindingPower(precedence)
       val rightBindingPower = leftBindingPower - (if (right) 1 else 0)
 
       rule.parselet(operator)
@@ -669,6 +687,11 @@ final class Parser {
           var end = operatorReference
           var branches = List.empty[Node]
 
+          for (first <- expression.parseRight()) {
+            branches ::= first
+            end = first.getEnd
+          }
+
           var finished = false
           while (!finished) {
             expression.consume(",", optional = true) match {
@@ -697,13 +720,13 @@ final class Parser {
       }
     }
 
-    private def argument(value: Node) = "argument" -> Node(
+    def argument(value: Node) = "argument" -> Node(
       "argument",
       value.getBegin,
       value.getEnd,
       List("value" -> value)
     )
 
-    private def bindingPower(precedence: Int) = Int.MaxValue - precedence * 10
+    def bindingPower(precedence: Int) = Int.MaxValue - precedence * 10
   }
 }

@@ -1,0 +1,208 @@
+ > create:
+expression statement:38
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    <<<(1 + 2) * 3;>>>
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:39
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (<<<1 + 2) * 3>>>;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+argument:40
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (<<<1 + 2>>>) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:41
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (<<<1 + 2>>>) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+argument:42
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (<<<1>>> + 2) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:43
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (<<<1>>> + 2) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+argument:44
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (1 + <<<2>>>) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:45
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (1 + <<<2>>>) * 3;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+argument:46
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (1 + 2) * <<<3>>>;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > create:
+application:47
+export type Hashtable<A, B>(hash: Function1<A, Integer>) {
+    this.elements: Array<Tuple2<A, B>> = emptyArray();
+    this.hash: Function1<A, Integer> = hash;
+
+    (1 + 2) * <<<3>>>;
+}
+
+export function contains(this: Hashtable<A, B>, element: A): Boolean {
+    return false;
+}
+
+
+ > merge:
+constructor body 11 cachable >> 4 {
+  statement: property 12 >> 11 {
+    name: elements
+    type: type application 13 >> 12 {
+      type: Array
+      parameters: type parameters 14 >> 13 {
+        parameter: type application 15 >> 14 {
+          type: Tuple2
+          parameters: type parameters 16 >> 15 {
+            parameter: type application 17 >> 16 {
+              type: A
+            }
+            parameter: type application 18 >> 16 {
+              type: B
+            }
+          }
+        }
+      }
+    }
+    value: application 19 >> 12 {
+      name: emptyArray
+    }
+  }
+  statement: property 20 >> 11 {
+    name: hash
+    type: type application 21 >> 20 {
+      type: Function1
+      parameters: type parameters 22 >> 21 {
+        parameter: type application 23 >> 22 {
+          type: A
+        }
+        parameter: type application 24 >> 22 {
+          type: Integer
+        }
+      }
+    }
+    value: variable 25 >> 20 {
+      name: hash
+    }
+  }
+  statement: expression statement 38 >> 11 {
+    expression: application 39 >> 38 {
+      name: multiply
+      argument: argument 40 >> 39 {
+        value: application 41 >> 40 {
+          name: plus
+          argument: argument 42 >> 41 {
+            value: application 43 >> 42 {
+              value: 1
+            }
+          }
+          argument: argument 44 >> 41 {
+            value: application 45 >> 44 {
+              value: 2
+            }
+          }
+        }
+      }
+      argument: argument 46 >> 39 {
+        value: application 47 >> 46 {
+          value: 3
+        }
+      }
+    }
+  }
+}
+
