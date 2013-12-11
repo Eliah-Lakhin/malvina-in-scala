@@ -17,7 +17,7 @@ import sbt._
 import Keys._
 import com.typesafe.sbt._
 
-object ProjectBuildConfig extends Build {
+object Malvina extends Build {
   lazy val PapaCarlo = Project(
     id = "malvina",
     base = file("."),
@@ -40,7 +40,7 @@ object ProjectBuildConfig extends Build {
 
         libraryDependencies ++= Seq(
           "org.scalatest" %% "scalatest" % "2.0.M6-SNAP8" % "test",
-          "name.lakhin.eliah.projects.papacarlo" %% "papa-carlo" % "0.5.+"
+          "name.lakhin.eliah.projects.papacarlo" %% "papa-carlo" % "0.6.+"
         ),
         resolvers ++= Seq(
           "sonatype" at "http://oss.sonatype.org/content/repositories/releases",
