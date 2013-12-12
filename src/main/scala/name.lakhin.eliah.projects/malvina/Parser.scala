@@ -16,9 +16,12 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.malvina.parser.{MalvinaSyntax, MalvinaLexer}
+import name.lakhin.eliah.projects.malvina.parser.{UnitSyntax, Lexer}
+import name.lakhin.eliah.projects.papacarlo.Syntax
 
 final class Parser {
-  val lexer = MalvinaLexer()
-  val syntax = MalvinaSyntax(lexer)
+  val lexer = Lexer()
+  val syntax = new Syntax(lexer)
+
+  UnitSyntax(syntax)
 }

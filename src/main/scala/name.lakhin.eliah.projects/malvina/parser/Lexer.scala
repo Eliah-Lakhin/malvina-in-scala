@@ -17,9 +17,8 @@ package name.lakhin.eliah.projects
 package malvina.parser
 
 import name.lakhin.eliah.projects.papacarlo.lexis._
-import name.lakhin.eliah.projects.papacarlo.Lexer
 
-object MalvinaLexer {
+object Lexer {
   private def tokenizer = {
     val tokenizer = new Tokenizer()
 
@@ -127,5 +126,6 @@ object MalvinaLexer {
     contextualizer
   }
 
-  def apply() = new Lexer(tokenizer, contextualizer)
+  def apply() = new name.lakhin.eliah.projects.papacarlo.Lexer(tokenizer,
+    contextualizer)
 }

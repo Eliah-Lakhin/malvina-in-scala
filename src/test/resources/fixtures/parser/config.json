@@ -1,5 +1,9 @@
 {
     "simple": {
         "steps": 2
+    },
+
+    "expressions": {
+        "steps": 1
     }
 }

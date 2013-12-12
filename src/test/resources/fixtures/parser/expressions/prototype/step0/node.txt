@@ -1,0 +1,59 @@
+ > create:
+declaration:2
+<<<static Test: Integer = a + b;>>>
+
+
+ > create:
+type application:3
+static Test: <<<Integer>>> = a + b;
+
+
+ > create:
+application:4
+static Test: Integer = <<<a + b>>>;
+
+
+ > create:
+argument:5
+static Test: Integer = <<<a>>> + b;
+
+
+ > create:
+variable:6
+static Test: Integer = <<<a>>> + b;
+
+
+ > create:
+argument:7
+static Test: Integer = a + <<<b>>>;
+
+
+ > create:
+variable:8
+static Test: Integer = a + <<<b>>>;
+
+
+ > merge:
+compilation unit 1 {
+  declaration: declaration 2 >> 1 {
+    name: Test
+    declaration: static
+    result: type application 3 >> 2 {
+      type: Integer
+    }
+    value: application 4 >> 2 {
+      name: plus
+      argument: argument 5 >> 4 {
+        value: variable 6 >> 5 {
+          name: a
+        }
+      }
+      argument: argument 7 >> 4 {
+        value: variable 8 >> 7 {
+          name: b
+        }
+      }
+    }
+  }
+}
+

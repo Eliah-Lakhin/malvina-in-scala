@@ -1,0 +1,4 @@
+ > invalidate:
+<<<static Test: Integer = a + b;
+>>>
+
