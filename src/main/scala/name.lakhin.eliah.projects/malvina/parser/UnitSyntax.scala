@@ -143,23 +143,7 @@ object UnitSyntax {
         val operators = new Operators(Rule.expression(branch("operand",
           operand.permissive("operand required"))))
 
-        operators.defineGroup("Tuple")
-        operators.definePrefix("!", "not", 4)
-        operators.definePrefix("-", "minus", 4)
-        operators.defineInfix("*", "multiply", 5)
-        operators.defineInfix("/", "divide", 5)
-        operators.defineInfix("+", "plus", 6)
-        operators.defineInfix("-", "minus", 6)
-        operators.defineInfix("->", "arrow", 7)
-        operators.defineInfix(">", "greater", 8)
-        operators.defineInfix(">=", "greaterOrEqual", 8)
-        operators.defineInfix("<", "lesser", 8)
-        operators.defineInfix("<=", "lesserOrEqual", 8)
-        operators.defineInfix("==", "equal", 9)
-        operators.defineInfix("&", "and", 10)
-        operators.defineInfix("|", "or", 10)
-        operators.defineInfix("=", "", 17)
-        operators.defineTernary("condition", 15)
+        operators.define()
 
         operators.rule
       }
@@ -227,15 +211,17 @@ object UnitSyntax {
             capture("module", token("id")).permissive
           )),
           token("("),
-          zeroOrMore(branch("argument", argument), token(",")),
+          zeroOrMore(branch("argument", choice(argument, expression)).required,
+            token(",")),
           token(")").permissive
         )
       }
 
       val argument = rule("argument") {
         sequence(
-          optional(sequence(capture("name", token("id")), token(":"))),
-          branch("value", expression).required
+          capture("name", token("id")),
+          token(":"),
+          branch("value", expression)
         )
       }
 
@@ -245,18 +231,26 @@ object UnitSyntax {
 
       val function = rule("function") {
         sequence(
-          optional(branch("parameters", choice(functionParameters,
-            singleParameter))),
-          token("=>"),
-          branch("body", expressionBody)
-        )
-      }
-
-      val functionParameters = rule("function parameters") {
-        sequence(
-          token("("),
-          branch("parameter", oneOrMore(functionParameter, token(","))),
-          token(")").permissive
+          token("#"),
+          choice(
+            sequence(
+              token("("),
+              zeroOrMore(branch("parameter", functionParameter), token(",")),
+              token("=>"),
+              branch("result", typeApplication),
+              token(")").permissive,
+              branch("body", block).permissive
+            ),
+            sequence(
+              oneOrMore(branch("parameter", functionParameter), token(",")),
+              token("=>"),
+              choice(
+                branch("body", expression).permissive,
+                branch("body", block).permissive
+              )
+            ),
+            branch("body", block).permissive
+          )
         )
       }
 
@@ -268,27 +262,6 @@ object UnitSyntax {
             capture("type", typeApplication)
           ))
         )
-      }
-
-      val singleParameter = rule("single parameter").transform {
-        single =>
-          Node(
-            "function parameters", single.getBegin, single.getEnd,
-            branches = List("parameter" ->
-              single.accessor.setKind("function parameter").node)
-          )
-      } {
-        capture("name", token("id"))
-      }
-
-      val expressionBody = rule("expression body").transform {
-        expression =>
-          Node("block", expression.getBegin, expression.getEnd, branches = List(
-            "statement" -> expression.accessor.setKind("expression statement")
-              .node
-          ))
-      } {
-        branch("expression", expression)
       }
 
       val block: NamedRule = rule("block").cachable {
@@ -351,7 +324,7 @@ object UnitSyntax {
       val returnStatement = rule("return") {
         sequence(
           token("return"),
-          optional(capture("value", expression)),
+          optional(branch("value", expression)),
           token(";").permissive
         )
       }

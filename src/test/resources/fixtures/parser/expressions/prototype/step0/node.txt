@@ -1,56 +1,2034 @@
  > create:
 declaration:2
-<<<static Test: Integer = a + b;>>>
+<<<function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}>>>
 
 
  > create:
-type application:3
-static Test: <<<Integer>>> = a + b;
+method parameters:3
+function test<<<()>>> {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+12...
+
+ > create:
+block:4 cachable
+function test() <<<{
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}>>>
 
 
  > create:
-application:4
-static Test: Integer = <<<a + b>>>;
+expression statement:5
+function test() {
+    <<<a + b * c;>>>
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+application:6
+function test() {
+    <<<a + b * c>>>;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+variable:7
+function test() {
+    <<<a>>> + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+application:8
+function test() {
+    a + <<<b * c>>>;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+variable:9
+function test() {
+    a + <<<b>>> * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+variable:10
+function test() {
+    a + b * <<<c>>>;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+13...
+
+ > create:
+expression statement:11
+function test() {
+    a + b * c;
+
+    <<<(d + e) * f;>>>
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+application:12
+function test() {
+    a + b * c;
+
+    <<<(d + e) * f>>>;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+application:13
+function test() {
+    a + b * c;
+
+    <<<(d + e)>>> * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+variable:14
+function test() {
+    a + b * c;
+
+    (<<<d>>> + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+variable:15
+function test() {
+    a + b * c;
+
+    (d + <<<e>>>) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+variable:16
+function test() {
+    a + b * c;
+
+    (d + e) * <<<f>>>;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+15...
+
+ > create:
+expression statement:17
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    <<<g - h.i.j[k, l];>>>
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+application:18
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    <<<g - h.i.j[k, l]>>>;
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+variable:19
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    <<<g>>> - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+application:20
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - <<<h.i.j[k, l]>>>;
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+application:21
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - <<<h.i.j>>>[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+application:22
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - <<<h.i>>>.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+variable:23
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - <<<h>>>.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+variable:24
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[<<<k>>>, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+variable:25
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, <<<l>>>];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+17...
+
+ > create:
+expression statement:26
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    <<<m = n;>>>
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+19...
+
+ > create:
+variable:27
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    <<<m = n>>>;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+19...
+
+ > create:
+variable:28
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = <<<n>>>;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+19...
+
+ > create:
+expression statement:29
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    <<<o.p = q;>>>
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+21...
+
+ > create:
+application:30
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    <<<o.p = q>>>;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+21...
+
+ > create:
+variable:31
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    <<<o>>>.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+21...
+
+ > create:
+variable:32
+function test() {
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = <<<q>>>;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+21...
+
+ > create:
+expression statement:33
+...1
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    <<<r++;>>>
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+23...
+
+ > create:
+application:34
+...1
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    <<<r++>>>;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+23...
+
+ > create:
+variable:35
+...1
+    a + b * c;
+
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    <<<r>>>++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+23...
+
+ > create:
+expression statement:36
+...3
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    <<<s.t(u, v);>>>
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+25...
+
+ > create:
+application:37
+...3
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    <<<s.t(u, v)>>>;
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+25...
+
+ > create:
+variable:38
+...3
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    <<<s>>>.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+25...
+
+ > create:
+variable:39
+...3
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(<<<u>>>, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+25...
+
+ > create:
+variable:40
+...3
+    (d + e) * f;
+
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, <<<v>>>);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+25...
+
+ > create:
+expression statement:41
+...5
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    <<<w.x() = y;>>>
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+27...
+
+ > create:
+application:42
+...5
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    <<<w.x() = y>>>;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+27...
+
+ > create:
+variable:43
+...5
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    <<<w>>>.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+27...
+
+ > create:
+variable:44
+...5
+    g - h.i.j[k, l];
+
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = <<<y>>>;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+27...
+
+ > create:
+expression statement:45
+...7
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    <<<w.x[] = y;>>>
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+29...
+
+ > create:
+application:46
+...7
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    <<<w.x[] = y>>>;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+29...
+
+ > create:
+application:47
+...7
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    <<<w.x>>>[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+29...
+
+ > create:
+variable:48
+...7
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    <<<w>>>.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+29...
+
+ > create:
+variable:49
+...7
+    m = n;
+
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = <<<y>>>;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+29...
+
+ > create:
+expression statement:50
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    <<<#x, y => x + y;>>>
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
 
 
  > create:
-argument:5
-static Test: Integer = <<<a>>> + b;
+function:51
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    <<<#x, y => x + y>>>;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
 
 
  > create:
-variable:6
-static Test: Integer = <<<a>>> + b;
+function parameter:52
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #<<<x>>>, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
 
 
  > create:
-argument:7
-static Test: Integer = a + <<<b>>>;
+function parameter:53
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, <<<y>>> => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
 
 
  > create:
-variable:8
-static Test: Integer = a + <<<b>>>;
+application:54
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => <<<x + y>>>;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:55
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => <<<x>>> + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:56
+...9
+    o.p = q;
+
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + <<<y>>>;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+expression statement:57
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    <<<#(x: Integer, y: Float => String) {return x + y;};>>>
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+function:58
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    <<<#(x: Integer, y: Float => String) {return x + y;}>>>;
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+type application:59
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => <<<String>>>) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+function parameter:60
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(<<<x: Integer>>>, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+function parameter:61
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, <<<y: Float>>> => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+block:62 cachable
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) <<<{return x + y;}>>>;
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+return:63
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {<<<return x + y;>>>};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:64
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return <<<x + y>>>;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:65
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return <<<x>>> + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:66
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + <<<y>>>;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+expression statement:67
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    <<<x >> #{
+        return y;
+    };>>>
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:68
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    <<<x >> #{
+        return y;
+    }>>>;
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:69
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    <<<x>>> >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+function:70
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> <<<#{
+        return y;
+    }>>>;
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+block:71 cachable
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #<<<{
+        return y;
+    }>>>;
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+return:72
+...14
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        <<<return y;>>>
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:73
+...14
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return <<<y>>>;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+expression statement:74
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    <<<[1, 2, 3].map(#x => x + 10);>>>
+}
+
+
+ > create:
+application:75
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    <<<[1, 2, 3].map(#x => x + 10)>>>;
+}
+
+
+ > create:
+array:76
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    <<<[1, 2, 3]>>>.map(#x => x + 10);
+}
+
+
+ > create:
+application:77
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [<<<1>>>, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:78
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, <<<2>>>, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:79
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, <<<3>>>].map(#x => x + 10);
+}
+
+
+ > create:
+function:80
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(<<<#x => x + 10>>>);
+}
+
+
+ > create:
+function parameter:81
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#<<<x>>> => x + 10);
+}
+
+
+ > create:
+application:82
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => <<<x + 10>>>);
+}
+
+
+ > create:
+variable:83
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => <<<x>>> + 10);
+}
+
+
+ > create:
+application:84
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + <<<10>>>);
+}
 
 
  > merge:
 compilation unit 1 {
   declaration: declaration 2 >> 1 {
-    name: Test
-    declaration: static
-    result: type application 3 >> 2 {
-      type: Integer
-    }
-    value: application 4 >> 2 {
-      name: plus
-      argument: argument 5 >> 4 {
-        value: variable 6 >> 5 {
-          name: a
+    name: test
+    declaration: function
+    parameters: method parameters 3 >> 2
+    body: block 4 cachable >> 2 {
+      statement: expression statement 5 >> 4 {
+        expression: application 6 >> 5 {
+          name: plus
+          argument: variable 7 >> 6 {
+            name: a
+          }
+          argument: application 8 >> 6 {
+            name: multiply
+            argument: variable 9 >> 8 {
+              name: b
+            }
+            argument: variable 10 >> 8 {
+              name: c
+            }
+          }
         }
       }
-      argument: argument 7 >> 4 {
-        value: variable 8 >> 7 {
-          name: b
+      statement: expression statement 11 >> 4 {
+        expression: application 12 >> 11 {
+          name: multiply
+          argument: application 13 >> 12 {
+            name: plus
+            argument: variable 14 >> 13 {
+              name: d
+            }
+            argument: variable 15 >> 13 {
+              name: e
+            }
+          }
+          argument: variable 16 >> 12 {
+            name: f
+          }
+        }
+      }
+      statement: expression statement 17 >> 4 {
+        expression: application 18 >> 17 {
+          name: minus
+          argument: variable 19 >> 18 {
+            name: g
+          }
+          argument: application 20 >> 18 {
+            name: access
+            argument: application 21 >> 20 {
+              name: j
+              argument: application 22 >> 21 {
+                name: i
+                argument: variable 23 >> 22 {
+                  name: h
+                }
+              }
+            }
+            argument: variable 24 >> 20 {
+              name: k
+            }
+            argument: variable 25 >> 20 {
+              name: l
+            }
+          }
+        }
+      }
+      statement: expression statement 26 >> 4 {
+        expression: variable 27 >> 26 {
+          name: m
+          value: variable 28 >> 27 {
+            name: n
+          }
+        }
+      }
+      statement: expression statement 29 >> 4 {
+        expression: application 30 >> 29 {
+          name: p
+          argument: variable 31 >> 30 {
+            name: o
+          }
+          argument: variable 32 >> 30 {
+            name: q
+          }
+        }
+      }
+      statement: expression statement 33 >> 4 {
+        expression: application 34 >> 33 {
+          name: next
+          argument: variable 35 >> 34 {
+            name: r
+          }
+        }
+      }
+      statement: expression statement 36 >> 4 {
+        expression: application 37 >> 36 {
+          name: t
+          argument: variable 38 >> 37 {
+            name: s
+          }
+          argument: variable 39 >> 37 {
+            name: u
+          }
+          argument: variable 40 >> 37 {
+            name: v
+          }
+        }
+      }
+      statement: expression statement 41 >> 4 {
+        expression: application 42 >> 41 {
+          name: x
+          argument: variable 43 >> 42 {
+            name: w
+          }
+          argument: variable 44 >> 42 {
+            name: y
+          }
+        }
+      }
+      statement: expression statement 45 >> 4 {
+        expression: application 46 >> 45 {
+          name: access
+          argument: application 47 >> 46 {
+            name: x
+            argument: variable 48 >> 47 {
+              name: w
+            }
+          }
+          argument: variable 49 >> 46 {
+            name: y
+          }
+        }
+      }
+      statement: expression statement 50 >> 4 {
+        expression: function 51 >> 50 {
+          parameter: function parameter 52 >> 51 {
+            name: x
+          }
+          parameter: function parameter 53 >> 51 {
+            name: y
+          }
+          body: application 54 >> 51 {
+            name: plus
+            argument: variable 55 >> 54 {
+              name: x
+            }
+            argument: variable 56 >> 54 {
+              name: y
+            }
+          }
+        }
+      }
+      statement: expression statement 57 >> 4 {
+        expression: function 58 >> 57 {
+          result: type application 59 >> 58 {
+            type: String
+          }
+          parameter: function parameter 60 >> 58 {
+            type: Integer
+            name: x
+          }
+          parameter: function parameter 61 >> 58 {
+            type: Float
+            name: y
+          }
+          body: block 62 cachable >> 58 {
+            statement: return 63 >> 62 {
+              value: application 64 >> 63 {
+                name: plus
+                argument: variable 65 >> 64 {
+                  name: x
+                }
+                argument: variable 66 >> 64 {
+                  name: y
+                }
+              }
+            }
+          }
+        }
+      }
+      statement: expression statement 67 >> 4 {
+        expression: application 68 >> 67 {
+          name: bind
+          argument: variable 69 >> 68 {
+            name: x
+          }
+          argument: function 70 >> 68 {
+            body: block 71 cachable >> 70 {
+              statement: return 72 >> 71 {
+                value: variable 73 >> 72 {
+                  name: y
+                }
+              }
+            }
+          }
+        }
+      }
+      statement: expression statement 74 >> 4 {
+        expression: application 75 >> 74 {
+          name: map
+          argument: array 76 >> 75 {
+            element: application 77 >> 76 {
+              value: 1
+            }
+            element: application 78 >> 76 {
+              value: 2
+            }
+            element: application 79 >> 76 {
+              value: 3
+            }
+          }
+          argument: function 80 >> 75 {
+            parameter: function parameter 81 >> 80 {
+              name: x
+            }
+            body: application 82 >> 80 {
+              name: plus
+              argument: variable 83 >> 82 {
+                name: x
+              }
+              argument: application 84 >> 82 {
+                value: 10
+              }
+            }
+          }
         }
       }
     }

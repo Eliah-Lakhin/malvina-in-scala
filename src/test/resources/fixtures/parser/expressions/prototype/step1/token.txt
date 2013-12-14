@@ -22,6 +22,7 @@ function~0~ `id`() {~3:0~
     #(`id`: `Id`, `id`: `Id` => `Id`) {~3:3:0~return `id` + `id`;};~3:0~
 
     `id` >> #{~3:3:0~
+        `id`++;
         return `id`;
     };~3:0~
 

@@ -1,5 +1,5 @@
  > create:
-expression statement:38
+expression statement:39
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -13,26 +13,12 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:39
+application:40
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
 
-    (<<<1 + 2) * 3>>>;
-}
-
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
-    return false;
-}
-
-
- > create:
-argument:40
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
-
-    (<<<1 + 2>>>) * 3;
+    <<<(1 + 2) * 3>>>;
 }
 
 export function contains(this: Hashtable<A, B>, element: A): Boolean {
@@ -46,7 +32,7 @@ export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
 
-    (<<<1 + 2>>>) * 3;
+    <<<(1 + 2)>>> * 3;
 }
 
 export function contains(this: Hashtable<A, B>, element: A): Boolean {
@@ -55,7 +41,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-argument:42
+application:42
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -74,20 +60,6 @@ export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
 
-    (<<<1>>> + 2) * 3;
-}
-
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
-    return false;
-}
-
-
- > create:
-argument:44
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
-
     (1 + <<<2>>>) * 3;
 }
 
@@ -97,35 +69,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:45
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
-
-    (1 + <<<2>>>) * 3;
-}
-
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
-    return false;
-}
-
-
- > create:
-argument:46
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
-
-    (1 + 2) * <<<3>>>;
-}
-
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
-    return false;
-}
-
-
- > create:
-application:47
+application:44
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -179,28 +123,20 @@ constructor body 11 cachable >> 4 {
       name: hash
     }
   }
-  statement: expression statement 38 >> 11 {
-    expression: application 39 >> 38 {
+  statement: expression statement 39 >> 11 {
+    expression: application 40 >> 39 {
       name: multiply
-      argument: argument 40 >> 39 {
-        value: application 41 >> 40 {
-          name: plus
-          argument: argument 42 >> 41 {
-            value: application 43 >> 42 {
-              value: 1
-            }
-          }
-          argument: argument 44 >> 41 {
-            value: application 45 >> 44 {
-              value: 2
-            }
-          }
+      argument: application 41 >> 40 {
+        name: plus
+        argument: application 42 >> 41 {
+          value: 1
+        }
+        argument: application 43 >> 41 {
+          value: 2
         }
       }
-      argument: argument 46 >> 39 {
-        value: application 47 >> 46 {
-          value: 3
-        }
+      argument: application 44 >> 40 {
+        value: 3
       }
     }
   }

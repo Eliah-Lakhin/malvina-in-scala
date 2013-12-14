@@ -16,14 +16,236 @@
 package name.lakhin.eliah.projects
 package malvina.parser
 
-import name.lakhin.eliah.projects.papacarlo.syntax.rules.ExpressionRule
+import name.lakhin.eliah.projects.papacarlo.syntax.rules.{RecoveryRule,
+  ExpressionRule}
 import name.lakhin.eliah.projects.papacarlo.syntax.Node
 
 private class Operators(val rule: ExpressionRule) {
-  def defineInfix(operator: String,
-                  function: String,
-                  precedence: Int,
-                  right: Boolean = false) {
+  def define() {
+    defineGroup("tuple")
+    defineChain(".", 1)
+    defineAccessor("access", 2)
+    definePostfix("++", "next", 3)
+    definePostfix("--", "previous", 3)
+    definePrefix("!", "not", 4)
+    definePrefix("-", "minus", 4)
+    defineInfix("*", "multiply", 5)
+    defineInfix("/", "divide", 5)
+    defineInfix("+", "plus", 6)
+    defineInfix("-", "minus", 6)
+    defineInfix("->", "arrow", 7)
+    defineGreater(">", "greater", "bind", "unbind", 8)
+    defineInfix(">=", "greaterOrEqual", 8, right = true)
+    defineInfix("<", "lesser", 8, right = true)
+    defineInfix("<=", "lesserOrEqual", 8, right = true)
+    defineInfix("==", "equal", 9, right = true)
+    defineInequality("!=", "not", "equal", 9)
+    defineInfix("&", "and", 10)
+    defineInfix("|", "or", 10)
+    defineTernary("condition", 15)
+    defineEquality("=", 17)
+  }
+
+  private def defineAccessor(accessFunction: String, precedence: Int) {
+    val dotBindingPower = bindingPower(precedence)
+
+    rule.parselet("[")
+      .leftBindingPower(dotBindingPower)
+      .leftDenotation {
+        (expression, left, operatorReference) =>
+          val begin = left.getBegin
+          var end = operatorReference
+          var index = List.empty[(String, Node)]
+
+          expression.saveState()
+          expression.parseRight() match {
+            case Some(first) =>
+              if (first.getKind == RecoveryRule.PlaceholderKind)
+                expression.restoreState()
+              else {
+                index ::= "argument" -> first
+                end = first.getEnd
+                expression.freeState()
+              }
+
+            case None =>
+              expression.freeState()
+          }
+
+          var finished = index.isEmpty
+          while (!finished) {
+            expression.consume(",", optional = true) match {
+              case Some(comma) =>
+                end = comma
+
+                for (success <- expression.parseRight()) {
+                  index ::= "argument" -> success
+                  end = success.getEnd
+                }
+
+              case None => finished = true
+            }
+          }
+
+          end = expression.consume("]").getOrElse(end)
+
+          Node("application", begin, end, ("argument" -> left) :: index.reverse,
+            List("name" -> operatorReference),
+            Map("name" -> accessFunction))
+      }
+  }
+
+  private def defineChain(dotOperator: String, precedence: Int) {
+    val dotBindingPower = bindingPower(precedence)
+
+    rule.parselet(dotOperator)
+      .leftBindingPower(dotBindingPower)
+      .leftDenotation {
+        (expression, left, operatorReference) =>
+          expression.parseRight(dotBindingPower) match {
+            case Some(right: Node) if right.getKind == "application" =>
+              right
+                .accessor
+                .setBegin(left.getBegin)
+                .setBranches("argument", left :: right.getBranches("argument"))
+                .node
+
+            case Some(right: Node) if right.getKind == "variable" &&
+              !right.hasBranch("value") =>
+
+              Node("application", left.getBegin, right.getEnd,
+                List("argument" -> left),
+                List("name" -> right.getBegin))
+
+            case Some(right: Node) =>
+              Node("application", left.getBegin, right.getEnd,
+                List("argument" -> left, "argument" -> right),
+                List("name" -> operatorReference), Map("name" -> "define"))
+
+            case None => left
+          }
+      }
+  }
+
+  private def defineEquality(equalOperator: String, equalPrecedence: Int) {
+    val equalLeftBindingPower = bindingPower(equalPrecedence)
+    val equalRightBindingPower = equalLeftBindingPower - 1
+
+    rule.parselet(equalOperator)
+      .leftBindingPower(equalLeftBindingPower)
+      .leftDenotation {
+        (expression, left, operatorReference) =>
+          expression.parseRight(equalRightBindingPower) match {
+            case Some(right) => left.getKind match {
+              case "application" =>
+                left
+                  .accessor
+                  .setEnd(right.getEnd)
+                  .setBranches("argument", left.getBranches("argument") :+
+                    right)
+                  .node
+
+              case "variable" if !left.hasBranch("value") =>
+                left
+                  .accessor
+                  .setEnd(right.getEnd)
+                  .setBranches("value", List(right))
+                  .node
+
+              case _ =>
+                Node("application", left.getBegin, right.getEnd,
+                  List("argument" -> left, "argument" -> right),
+                  List("name" -> operatorReference), Map("name" -> "define"))
+            }
+
+            case None => left
+          }
+      }
+  }
+
+  private def defineGreater(greaterOperator: String,
+                            greaterFunction: String,
+                            bindFunction: String,
+                            unbindFunction: String,
+                            precedence: Int) {
+    val leftBindingPower = bindingPower(precedence)
+    val rightBindingPower = leftBindingPower - 1
+
+    rule.parselet(greaterOperator)
+      .leftBindingPower(leftBindingPower)
+      .leftDenotation {
+        (expression, left, operatorReference) =>
+          val begin = left.getBegin
+          var end = operatorReference
+          var function = greaterFunction
+          var freeState = true
+          var branches = List("argument" -> left)
+
+          expression.saveState()
+          expression.consume("!", optional = true) match {
+            case Some(exclamation) =>
+              expression.consume(">", optional = true) match {
+                case Some(secondGreater) =>
+                  end = secondGreater
+                  function = unbindFunction
+                  freeState = false
+                case None =>
+              }
+
+            case None =>
+              expression.consume(">", optional = true) match {
+                case Some(secondGreater) =>
+                  end = secondGreater
+                  function = bindFunction
+                  freeState = false
+                case None =>
+              }
+          }
+
+          if (freeState) expression.freeState()
+
+          for (right <- expression.parseRight(rightBindingPower)) {
+            branches :+= "argument" -> right
+            end = right.getEnd
+          }
+
+          Node("application", begin, end, branches,
+            List("name" -> operatorReference), Map("name" -> function))
+      }
+  }
+
+  private def defineInequality(operator: String,
+                               notFunction: String,
+                               equalFunction: String,
+                               precedence: Int) {
+    val leftBindingPower = bindingPower(precedence)
+    val rightBindingPower = leftBindingPower - 1
+
+    rule.parselet(operator)
+      .leftBindingPower(leftBindingPower)
+      .leftDenotation {
+        (expression, left, operatorReference) =>
+          val begin = left.getBegin
+          var end = operatorReference
+          var branches = List("argument" -> left)
+
+          for (right <- expression.parseRight(rightBindingPower)) {
+            branches :+= "argument" -> right
+            end = right.getEnd
+          }
+
+          val equalApplication = Node("application", begin, end, branches,
+            List("name" -> operatorReference), Map("name" -> equalFunction))
+
+          Node("application", begin, end, List("argument" -> equalApplication),
+            List("name" -> operatorReference), Map("name" -> notFunction))
+      }
+  }
+
+  private def defineInfix(operator: String,
+                          function: String,
+                          precedence: Int,
+                          right: Boolean = false) {
     val leftBindingPower = bindingPower(precedence)
     val rightBindingPower = leftBindingPower - (if (right) 1 else 0)
 
@@ -33,11 +255,10 @@ private class Operators(val rule: ExpressionRule) {
         (expression, left, operatorReference) =>
           val begin = left.getBegin
           var end = operatorReference
-          var branches = List.empty[(String, Node)]
+          var branches = List("argument" -> left)
 
-          branches :+= argument(left)
           for (right <- expression.parseRight(rightBindingPower)) {
-            branches :+= argument(right)
+            branches :+= "argument" -> right
             end = right.getEnd
           }
 
@@ -46,7 +267,9 @@ private class Operators(val rule: ExpressionRule) {
       }
   }
 
-  def definePostfix(operator: String, function: String, precedence: Int) {
+  private def definePostfix(operator: String,
+                            function: String,
+                            precedence: Int) {
     rule.parselet(operator)
       .leftBindingPower(bindingPower(precedence))
       .leftDenotation {
@@ -55,14 +278,16 @@ private class Operators(val rule: ExpressionRule) {
             "application",
             left.getBegin,
             operatorReference,
-            List(argument(left)),
+            List("argument" -> left),
             List("name" -> operatorReference),
             Map("name" -> function)
           )
       }
   }
 
-  def definePrefix(operator: String, function: String, precedence: Int) {
+  private def definePrefix(operator: String,
+                           function: String,
+                           precedence: Int) {
     val power = bindingPower(precedence)
 
     rule.parselet(operator).nullDenotation {
@@ -72,7 +297,7 @@ private class Operators(val rule: ExpressionRule) {
         var branches = List.empty[(String, Node)]
 
         for (right <- expression.parseRight(power)) {
-          branches :+= argument(right)
+          branches = List("argument" -> right)
           end = right.getEnd
         }
 
@@ -82,7 +307,7 @@ private class Operators(val rule: ExpressionRule) {
     }
   }
 
-  def defineTernary(function: String, precedence: Int) {
+  private def defineTernary(function: String, precedence: Int) {
     val conditionBindingPower = bindingPower(precedence)
     val successBranchBindingPower = conditionBindingPower - 1
 
@@ -94,17 +319,17 @@ private class Operators(val rule: ExpressionRule) {
           var end = operatorReference
           var branches = List.empty[(String, Node)]
 
-          branches :+= argument(condition)
+          branches :+= "argument" -> condition
 
           for (success <- expression.parseRight(successBranchBindingPower)) {
-            branches :+= argument(success)
+            branches :+= "argument" -> success
             end = success.getEnd
           }
 
           expression.consume(":")
 
           for (fail <- expression.parseRight(conditionBindingPower)) {
-            branches :+= argument(fail)
+            branches :+= "argument" -> fail
             end = fail.getEnd
           }
 
@@ -113,26 +338,36 @@ private class Operators(val rule: ExpressionRule) {
       }
   }
 
-  def defineGroup(tupleConstructor: String) {
+  private def defineGroup(tupleConstructor: String) {
     rule.parselet("(").nullDenotation {
       (expression, operatorReference) =>
         val begin = operatorReference
         var end = operatorReference
-        var branches = List.empty[Node]
+        var branches = List.empty[(String, Node)]
 
-        for (first <- expression.parseRight()) {
-          branches ::= first
-          end = first.getEnd
+        expression.saveState()
+        expression.parseRight() match {
+          case Some(first) =>
+            if (first.getKind == RecoveryRule.PlaceholderKind)
+              expression.restoreState()
+            else {
+              branches ::= "argument" -> first
+              end = first.getEnd
+              expression.freeState()
+            }
+
+          case None =>
+            expression.freeState()
         }
 
-        var finished = false
+        var finished = branches.isEmpty
         while (!finished) {
           expression.consume(",", optional = true) match {
             case Some(comma) =>
               end = comma
 
               for (success <- expression.parseRight()) {
-                branches ::= success
+                branches ::= "argument" -> success
                 end = success.getEnd
               }
 
@@ -140,25 +375,23 @@ private class Operators(val rule: ExpressionRule) {
           }
         }
 
-        expression.consume(")")
+        end = expression.consume(")").getOrElse(end)
 
         branches match {
-          case head :: Nil => head
+          case head :: Nil =>
+            head._2
+              .accessor
+              .setBegin(begin)
+              .setEnd(end)
+              .node
 
           case _ =>
-            Node("application", begin, end, branches.reverse.map(argument),
+            Node("application", begin, end, branches.reverse,
               List("name" -> operatorReference),
               Map("name" -> tupleConstructor))
         }
     }
   }
 
-  def argument(value: Node) = "argument" -> Node(
-    "argument",
-    value.getBegin,
-    value.getEnd,
-    List("value" -> value)
-  )
-
-  def bindingPower(precedence: Int) = Int.MaxValue - precedence * 10
+  private def bindingPower(precedence: Int) = Int.MaxValue - precedence * 10
 }

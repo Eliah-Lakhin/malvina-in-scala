@@ -1,0 +1,80 @@
+ > create:
+expression statement:85
+...14
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        <<<y++;>>>
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:86
+...14
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        <<<y++>>>;
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+variable:87
+...14
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        <<<y>>>++;
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > merge:
+block 71 cachable >> 70 {
+  statement: expression statement 85 >> 71 {
+    expression: application 86 >> 85 {
+      name: next
+      argument: variable 87 >> 86 {
+        name: y
+      }
+    }
+  }
+  statement: return 72 >> 71 {
+    value: variable 73 >> 72 {
+      name: y
+    }
+  }
+}
+
