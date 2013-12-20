@@ -112,7 +112,7 @@ function test() {
 13...
 
  > create:
-variable:7
+application:7
 function test() {
     <<<a>>> + b * c;
 
@@ -144,7 +144,7 @@ function test() {
 13...
 
  > create:
-variable:9
+application:9
 function test() {
     a + <<<b>>> * c;
 
@@ -160,7 +160,7 @@ function test() {
 13...
 
  > create:
-variable:10
+application:10
 function test() {
     a + b * <<<c>>>;
 
@@ -230,7 +230,7 @@ function test() {
 15...
 
  > create:
-variable:14
+application:14
 function test() {
     a + b * c;
 
@@ -248,7 +248,7 @@ function test() {
 15...
 
  > create:
-variable:15
+application:15
 function test() {
     a + b * c;
 
@@ -266,7 +266,7 @@ function test() {
 15...
 
  > create:
-variable:16
+application:16
 function test() {
     a + b * c;
 
@@ -324,7 +324,7 @@ function test() {
 17...
 
  > create:
-variable:19
+application:19
 function test() {
     a + b * c;
 
@@ -404,7 +404,7 @@ function test() {
 17...
 
  > create:
-variable:23
+application:23
 function test() {
     a + b * c;
 
@@ -424,7 +424,7 @@ function test() {
 17...
 
  > create:
-variable:24
+application:24
 function test() {
     a + b * c;
 
@@ -444,7 +444,7 @@ function test() {
 17...
 
  > create:
-variable:25
+application:25
 function test() {
     a + b * c;
 
@@ -486,7 +486,7 @@ function test() {
 19...
 
  > create:
-variable:27
+application:27
 function test() {
     a + b * c;
 
@@ -508,7 +508,7 @@ function test() {
 19...
 
  > create:
-variable:28
+application:28
 function test() {
     a + b * c;
 
@@ -578,7 +578,7 @@ function test() {
 21...
 
  > create:
-variable:31
+application:31
 function test() {
     a + b * c;
 
@@ -602,7 +602,7 @@ function test() {
 21...
 
  > create:
-variable:32
+application:32
 function test() {
     a + b * c;
 
@@ -678,7 +678,7 @@ application:34
 23...
 
  > create:
-variable:35
+application:35
 ...1
     a + b * c;
 
@@ -756,7 +756,7 @@ application:37
 25...
 
  > create:
-variable:38
+application:38
 ...3
     (d + e) * f;
 
@@ -782,7 +782,7 @@ variable:38
 25...
 
  > create:
-variable:39
+application:39
 ...3
     (d + e) * f;
 
@@ -808,7 +808,7 @@ variable:39
 25...
 
  > create:
-variable:40
+application:40
 ...3
     (d + e) * f;
 
@@ -886,7 +886,7 @@ application:42
 27...
 
  > create:
-variable:43
+application:43
 ...5
     g - h.i.j[k, l];
 
@@ -912,7 +912,7 @@ variable:43
 27...
 
  > create:
-variable:44
+application:44
 ...5
     g - h.i.j[k, l];
 
@@ -1016,7 +1016,7 @@ application:47
 29...
 
  > create:
-variable:48
+application:48
 ...7
     m = n;
 
@@ -1042,7 +1042,7 @@ variable:48
 29...
 
  > create:
-variable:49
+application:49
 ...7
     m = n;
 
@@ -1193,7 +1193,7 @@ application:54
 
 
  > create:
-variable:55
+application:55
 ...9
     o.p = q;
 
@@ -1218,7 +1218,7 @@ variable:55
 
 
  > create:
-variable:56
+application:56
 ...9
     o.p = q;
 
@@ -1427,7 +1427,7 @@ application:64
 
 
  > create:
-variable:65
+application:65
 ...11
     r++;
 
@@ -1450,7 +1450,7 @@ variable:65
 
 
  > create:
-variable:66
+application:66
 ...11
     r++;
 
@@ -1515,7 +1515,7 @@ application:68
 
 
  > create:
-variable:69
+application:69
 ...13
     s.t(u, v);
 
@@ -1598,7 +1598,7 @@ return:72
 
 
  > create:
-variable:73
+application:73
 ...14
 
     w.x() = y;
@@ -1652,7 +1652,7 @@ application:75
 
 
  > create:
-array:76
+application:76
 ...17
     w.x[] = y;
 
@@ -1681,7 +1681,7 @@ application:77
         return y;
     };
 
-    [<<<1>>>, 2, 3].map(#x => x + 10);
+    [<<<1, 2>>>, 3].map(#x => x + 10);
 }
 
 
@@ -1698,7 +1698,7 @@ application:78
         return y;
     };
 
-    [1, <<<2>>>, 3].map(#x => x + 10);
+    [<<<1>>>, 2, 3].map(#x => x + 10);
 }
 
 
@@ -1715,12 +1715,46 @@ application:79
         return y;
     };
 
+    [<<<1>>>, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:80
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [1, <<<2>>>, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:81
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
     [1, 2, <<<3>>>].map(#x => x + 10);
 }
 
 
  > create:
-function:80
+function:82
 ...17
     w.x[] = y;
 
@@ -1737,7 +1771,7 @@ function:80
 
 
  > create:
-function parameter:81
+function parameter:83
 ...17
     w.x[] = y;
 
@@ -1754,7 +1788,7 @@ function parameter:81
 
 
  > create:
-application:82
+application:84
 ...17
     w.x[] = y;
 
@@ -1771,7 +1805,7 @@ application:82
 
 
  > create:
-variable:83
+application:85
 ...17
     w.x[] = y;
 
@@ -1788,7 +1822,7 @@ variable:83
 
 
  > create:
-application:84
+application:86
 ...17
     w.x[] = y;
 
@@ -1814,15 +1848,15 @@ compilation unit 1 {
       statement: expression statement 5 >> 4 {
         expression: application 6 >> 5 {
           name: plus
-          argument: variable 7 >> 6 {
+          argument: application 7 >> 6 {
             name: a
           }
           argument: application 8 >> 6 {
             name: multiply
-            argument: variable 9 >> 8 {
+            argument: application 9 >> 8 {
               name: b
             }
-            argument: variable 10 >> 8 {
+            argument: application 10 >> 8 {
               name: c
             }
           }
@@ -1833,14 +1867,14 @@ compilation unit 1 {
           name: multiply
           argument: application 13 >> 12 {
             name: plus
-            argument: variable 14 >> 13 {
+            argument: application 14 >> 13 {
               name: d
             }
-            argument: variable 15 >> 13 {
+            argument: application 15 >> 13 {
               name: e
             }
           }
-          argument: variable 16 >> 12 {
+          argument: application 16 >> 12 {
             name: f
           }
         }
@@ -1848,7 +1882,7 @@ compilation unit 1 {
       statement: expression statement 17 >> 4 {
         expression: application 18 >> 17 {
           name: minus
-          argument: variable 19 >> 18 {
+          argument: application 19 >> 18 {
             name: g
           }
           argument: application 20 >> 18 {
@@ -1857,24 +1891,24 @@ compilation unit 1 {
               name: j
               argument: application 22 >> 21 {
                 name: i
-                argument: variable 23 >> 22 {
+                argument: application 23 >> 22 {
                   name: h
                 }
               }
             }
-            argument: variable 24 >> 20 {
+            argument: application 24 >> 20 {
               name: k
             }
-            argument: variable 25 >> 20 {
+            argument: application 25 >> 20 {
               name: l
             }
           }
         }
       }
       statement: expression statement 26 >> 4 {
-        expression: variable 27 >> 26 {
+        expression: application 27 >> 26 {
           name: m
-          value: variable 28 >> 27 {
+          argument: application 28 >> 27 {
             name: n
           }
         }
@@ -1882,10 +1916,10 @@ compilation unit 1 {
       statement: expression statement 29 >> 4 {
         expression: application 30 >> 29 {
           name: p
-          argument: variable 31 >> 30 {
+          argument: application 31 >> 30 {
             name: o
           }
-          argument: variable 32 >> 30 {
+          argument: application 32 >> 30 {
             name: q
           }
         }
@@ -1893,7 +1927,7 @@ compilation unit 1 {
       statement: expression statement 33 >> 4 {
         expression: application 34 >> 33 {
           name: next
-          argument: variable 35 >> 34 {
+          argument: application 35 >> 34 {
             name: r
           }
         }
@@ -1901,13 +1935,13 @@ compilation unit 1 {
       statement: expression statement 36 >> 4 {
         expression: application 37 >> 36 {
           name: t
-          argument: variable 38 >> 37 {
+          argument: application 38 >> 37 {
             name: s
           }
-          argument: variable 39 >> 37 {
+          argument: application 39 >> 37 {
             name: u
           }
-          argument: variable 40 >> 37 {
+          argument: application 40 >> 37 {
             name: v
           }
         }
@@ -1915,10 +1949,10 @@ compilation unit 1 {
       statement: expression statement 41 >> 4 {
         expression: application 42 >> 41 {
           name: x
-          argument: variable 43 >> 42 {
+          argument: application 43 >> 42 {
             name: w
           }
-          argument: variable 44 >> 42 {
+          argument: application 44 >> 42 {
             name: y
           }
         }
@@ -1928,11 +1962,11 @@ compilation unit 1 {
           name: access
           argument: application 47 >> 46 {
             name: x
-            argument: variable 48 >> 47 {
+            argument: application 48 >> 47 {
               name: w
             }
           }
-          argument: variable 49 >> 46 {
+          argument: application 49 >> 46 {
             name: y
           }
         }
@@ -1947,10 +1981,10 @@ compilation unit 1 {
           }
           body: application 54 >> 51 {
             name: plus
-            argument: variable 55 >> 54 {
+            argument: application 55 >> 54 {
               name: x
             }
-            argument: variable 56 >> 54 {
+            argument: application 56 >> 54 {
               name: y
             }
           }
@@ -1973,10 +2007,10 @@ compilation unit 1 {
             statement: return 63 >> 62 {
               value: application 64 >> 63 {
                 name: plus
-                argument: variable 65 >> 64 {
+                argument: application 65 >> 64 {
                   name: x
                 }
-                argument: variable 66 >> 64 {
+                argument: application 66 >> 64 {
                   name: y
                 }
               }
@@ -1987,13 +2021,13 @@ compilation unit 1 {
       statement: expression statement 67 >> 4 {
         expression: application 68 >> 67 {
           name: bind
-          argument: variable 69 >> 68 {
+          argument: application 69 >> 68 {
             name: x
           }
           argument: function 70 >> 68 {
             body: block 71 cachable >> 70 {
               statement: return 72 >> 71 {
-                value: variable 73 >> 72 {
+                value: application 73 >> 72 {
                   name: y
                 }
               }
@@ -2004,28 +2038,39 @@ compilation unit 1 {
       statement: expression statement 74 >> 4 {
         expression: application 75 >> 74 {
           name: map
-          argument: array 76 >> 75 {
-            element: application 77 >> 76 {
-              value: 1
+          argument: application 76 >> 75 {
+            name: set
+            argument: application 77 >> 76 {
+              name: set
+              argument: application 78 >> 77 {
+                name: arrayOf
+                argument: application 79 >> 78 {
+                  value: 1
+                  name: integer
+                }
+              }
+              argument: application 80 >> 77 {
+                value: 2
+                name: integer
+              }
             }
-            element: application 78 >> 76 {
-              value: 2
-            }
-            element: application 79 >> 76 {
+            argument: application 81 >> 76 {
               value: 3
+              name: integer
             }
           }
-          argument: function 80 >> 75 {
-            parameter: function parameter 81 >> 80 {
+          argument: function 82 >> 75 {
+            parameter: function parameter 83 >> 82 {
               name: x
             }
-            body: application 82 >> 80 {
+            body: application 84 >> 82 {
               name: plus
-              argument: variable 83 >> 82 {
+              argument: application 85 >> 84 {
                 name: x
               }
-              argument: application 84 >> 82 {
+              argument: application 86 >> 84 {
                 value: 10
+                name: integer
               }
             }
           }

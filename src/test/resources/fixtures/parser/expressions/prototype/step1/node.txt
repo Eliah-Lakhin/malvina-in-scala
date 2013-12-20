@@ -1,5 +1,5 @@
  > create:
-expression statement:85
+expression statement:87
 ...14
 
     w.x() = y;
@@ -20,7 +20,7 @@ expression statement:85
 
 
  > create:
-application:86
+application:88
 ...14
 
     w.x() = y;
@@ -41,7 +41,7 @@ application:86
 
 
  > create:
-variable:87
+application:89
 ...14
 
     w.x() = y;
@@ -63,16 +63,16 @@ variable:87
 
  > merge:
 block 71 cachable >> 70 {
-  statement: expression statement 85 >> 71 {
-    expression: application 86 >> 85 {
+  statement: expression statement 87 >> 71 {
+    expression: application 88 >> 87 {
       name: next
-      argument: variable 87 >> 86 {
+      argument: application 89 >> 88 {
         name: y
       }
     }
   }
   statement: return 72 >> 71 {
-    value: variable 73 >> 72 {
+    value: application 73 >> 72 {
       name: y
     }
   }

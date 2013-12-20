@@ -27,6 +27,7 @@ object UnitSyntax {
       import Rule._
 
       rule("compilation unit").main {
+        oneOrMore(branch("import", importDeclaration))
         oneOrMore(branch("declaration", declaration))
       }
 
@@ -41,7 +42,7 @@ object UnitSyntax {
       val functionReference = rule("function reference") {
         sequence(
           capture("name", token("id")),
-          optional(moduleReference),
+          optional(capture("module", token("module"))),
           optional(sequence(
             capture("types", token("(")),
             zeroOrMore(branch("type", token("Id")), token(",")),
@@ -53,7 +54,7 @@ object UnitSyntax {
       val typeReference = rule("type reference") {
         sequence(
           capture("name", token("Id")),
-          optional(moduleReference),
+          optional(capture("module", token("module"))),
           optional(sequence(
             token("<"),
             capture("parameters", token("decimal")),
@@ -126,7 +127,7 @@ object UnitSyntax {
       val typeApplication: NamedRule = rule("type application") {
         sequence(
           capture("type", choice(token("Id"), token("type variable"))),
-          optional(moduleReference),
+          optional(capture("module", token("module"))),
           optional(branch("parameters", typeParameters))
         )
       }
@@ -148,7 +149,39 @@ object UnitSyntax {
         operators.rule
       }
 
-      val array = rule("array") {
+      val array = rule("array").transform {
+        node =>
+          node.getBranches("element") match {
+            case Nil =>
+              node
+                .accessor
+                .setKind("application")
+                .setConstant("name", "emptyArray")
+                .node
+
+            case head :: rest =>
+              rest
+                .foldLeft(Node("application", head.getBegin, head.getEnd,
+                  branches = List("argument" -> head),
+                  constants = Map("name" -> "arrayOf"))) {
+                  (result, next) =>
+                    Node(
+                      "application",
+                      result.getBegin,
+                      next.getEnd,
+                      branches = List(
+                        "argument" -> result,
+                        "argument" -> next
+                      ),
+                      constants = Map("name" -> "set")
+                    )
+                }
+                .accessor
+                .setBegin(node.getBegin)
+                .setEnd(node.getEnd)
+                .node
+          }
+      } {
         sequence(
           token("["),
           zeroOrMore(branch("element", expression), token(",")),
@@ -206,9 +239,11 @@ object UnitSyntax {
       val application = rule("application") {
         sequence(
           capture("name", token("id")),
+          optional(capture("module", token("module"))),
           optional(sequence(
-            token("@"),
-            capture("module", token("id")).permissive
+            token("<"),
+            oneOrMore(branch("parameter", typeApplication), token(",")),
+            token(">")
           )),
           token("("),
           zeroOrMore(branch("argument", choice(argument, expression)).required,
@@ -219,14 +254,42 @@ object UnitSyntax {
 
       val argument = rule("argument") {
         sequence(
-          capture("name", token("id")),
+          capture("name", choice(token("id"), token("this"))),
           token(":"),
           branch("value", expression)
         )
       }
 
-      val variable = rule("variable") {
+      val variable = rule("variable").produce("application") {
         capture("name", token("id"))
+      }
+
+      val instantiation = rule("instantiation").transform {
+        node =>
+          node.accessor.setConstant("name", "new" + node.getValue("name"))
+
+          node
+      } {
+        sequence(
+          token("new"),
+          capture("name", token("Id")),
+          optional(capture("module", token("module"))),
+          token("("),
+          zeroOrMore(branch("argument", choice(argument, expression)).required,
+            token(",")),
+          token(")").permissive
+        )
+      }
+
+      val staticAccess = rule("static").transform {
+        node =>
+          node.accessor
+            .setKind("application")
+            .setConstant("name", "instanceOf" + node.getValue("name"))
+
+          node
+      } {
+        capture("name", token("Id"))
       }
 
       val function = rule("function") {
@@ -264,6 +327,13 @@ object UnitSyntax {
         )
       }
 
+      val expressionStatement = rule("expression statement") {
+        sequence(
+          branch("expression", expression),
+          token(";").permissive
+        ).required
+      }
+
       val block: NamedRule = rule("block").cachable {
         sequence(
           token("{"),
@@ -274,7 +344,7 @@ object UnitSyntax {
         )
       }
 
-      val binaryBranching: NamedRule = rule("binary branching") {
+      val binaryBranching: NamedRule = rule("if") {
         sequence(
           token("if"),
           token("(").permissive,
@@ -290,22 +360,50 @@ object UnitSyntax {
 
       val conditions = rule("conditions") {
          oneOrMore(
-           sequence(
-             branch("expression", expression),
-             optional(sequence(token("as"), capture("variable", token("id"))))
-           ),
+           branch("condition", choice(decomposition, expression)),
            separator = token(",")
          )
       }
 
-      val multipleBranching: NamedRule = rule("multiple branching") {
+      val decomposition = rule("decomposition") {
+        sequence(
+          capture("name", token("id")),
+          token(":"),
+          optional(capture("type", typeApplication)),
+          token("="),
+          branch("value", expression)
+        )
+      }
+
+      val multipleBranching: NamedRule = rule("switch").transform {
+        node =>
+          node.getBranches("conditions").zip(node.getBranches("body"))
+            .foldRight(node.getBranch("default").getOrElse(Node("block",
+              node.getEnd, node.getEnd))) {
+            (pair, result) =>
+              Node("if", pair._1.getBegin, pair._2.getEnd, branches = List(
+                "conditions" -> pair._1,
+                "success" -> pair._2,
+                "fail" -> result
+              ))
+          }
+            .accessor
+            .setBegin(node.getBegin)
+            .setEnd(node.getEnd)
+            .node
+      } {
         sequence(
           token("if"),
           token("{").permissive,
           oneOrMore(sequence(
-            branch("conditions", choice(conditions, defaultCondition)),
-            token(":").permissive,
+            branch("conditions", conditions),
+            token(":"),
             branch("body", bodyStatement)
+          )),
+          optional(sequence(
+            token("else"),
+            token(":"),
+            branch("default", bodyStatement)
           )),
           token("}").permissive
         )
@@ -338,35 +436,33 @@ object UnitSyntax {
           capture("name", token("id")),
           token(":"),
           optional(capture("type", typeApplication)),
-          sequence(
-            token("="),
-            branch("value", expression)
-          ).permissive,
+          sequence(token("="), branch("value", expression)).permissive,
           token(";").permissive
         )
       }
 
-      val expressionStatement = rule("expression statement") {
-        sequence(
-          branch("expression", expression),
-          token(";").permissive
-        ).required
-      }
-
-      val defaultCondition = rule("default condition") {token("else")}
-
       val operand = subrule("operand") {
         choice(array, integer, float, string, nullLiteral, booleanLiteral,
-          thisReference, application, function, variable)
+          thisReference, application, function, variable, instantiation,
+          staticAccess)
       }
 
-      val bodyStatement = subrule("body statement") {
+      val bodyStatement = rule("body statement").transform {
+        node =>
+          if (node.getKind == "block") node
+          else Node("block", node.getBegin, node.getEnd,
+            branches = List("statement" -> node))
+      } {
         choice(block, binaryBranching, multipleBranching, loop, returnStatement,
           breakStatement, expressionStatement)
       }
 
-      val moduleReference = subrule("module reference") {
-        sequence(token("@"), capture("module", token("id")))
+      val importDeclaration = subrule("import declaration") {
+        sequence(
+          token("import"),
+          capture("module", token("module")),
+          token(";").permissive
+        )
       }
 
       val functionDeclaration = subrule("function declaration") {

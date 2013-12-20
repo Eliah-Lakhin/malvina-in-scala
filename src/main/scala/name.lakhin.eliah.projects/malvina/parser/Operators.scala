@@ -110,13 +110,6 @@ private class Operators(val rule: ExpressionRule) {
                 .setBranches("argument", left :: right.getBranches("argument"))
                 .node
 
-            case Some(right: Node) if right.getKind == "variable" &&
-              !right.hasBranch("value") =>
-
-              Node("application", left.getBegin, right.getEnd,
-                List("argument" -> left),
-                List("name" -> right.getBegin))
-
             case Some(right: Node) =>
               Node("application", left.getBegin, right.getEnd,
                 List("argument" -> left, "argument" -> right),
@@ -143,13 +136,6 @@ private class Operators(val rule: ExpressionRule) {
                   .setEnd(right.getEnd)
                   .setBranches("argument", left.getBranches("argument") :+
                     right)
-                  .node
-
-              case "variable" if !left.hasBranch("value") =>
-                left
-                  .accessor
-                  .setEnd(right.getEnd)
-                  .setBranches("value", List(right))
                   .node
 
               case _ =>

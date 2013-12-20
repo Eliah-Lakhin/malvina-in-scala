@@ -119,7 +119,7 @@ constructor body 11 cachable >> 4 {
         }
       }
     }
-    value: variable 25 >> 20 {
+    value: application 25 >> 20 {
       name: hash
     }
   }
@@ -130,13 +130,16 @@ constructor body 11 cachable >> 4 {
         name: plus
         argument: application 42 >> 41 {
           value: 1
+          name: integer
         }
         argument: application 43 >> 41 {
           value: 2
+          name: integer
         }
       }
       argument: application 44 >> 40 {
         value: 3
+        name: integer
       }
     }
   }

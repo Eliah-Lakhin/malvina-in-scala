@@ -103,13 +103,21 @@ object Lexer {
       )
     ).mutable
 
+    tokenCategory(
+      "module",
+      sequence(
+        chunk("@"),
+        oneOrMore(choice(rangeOf('a', 'z'), chunk("-"), rangeOf('A', 'Z')))
+      )
+    ).mutable
+
     keywords("true", "false", "null", "lazy", "if", "else", "loop", "break",
-      "return", "new", "as", "this", "export", "type", "function", "static",
-      "translate", "in", "module")
+      "return", "new", "this", "export", "type", "function", "static",
+      "translate", "in", "module", "import")
 
     terminals("{", "}", "[", "]", "(", ")", ">=", "<=", "==", ">", "<", "=>",
       "->", "=", "+", "-", "|", "&", ";", ":", "?", "!=", "!", ",", ".", "++",
-      "--", "@", "/*", "*/", "*", "/", "//", "#")
+      "--", "/*", "*/", "*", "/", "//", "#")
 
     tokenizer
   }

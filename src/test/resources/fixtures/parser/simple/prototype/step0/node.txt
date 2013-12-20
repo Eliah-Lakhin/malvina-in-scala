@@ -275,7 +275,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-variable:25
+application:25
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = <<<hash>>>;
@@ -504,7 +504,7 @@ compilation unit 1 {
               }
             }
           }
-          value: variable 25 >> 20 {
+          value: application 25 >> 20 {
             name: hash
           }
         }
