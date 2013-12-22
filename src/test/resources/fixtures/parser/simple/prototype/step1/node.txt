@@ -1,5 +1,5 @@
  > create:
-expression statement:39
+expression statement:34
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -13,7 +13,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:40
+application:35
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -27,7 +27,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:41
+application:36
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -41,7 +41,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:42
+application:37
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -55,7 +55,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:43
+application:38
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -69,7 +69,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > create:
-application:44
+application:39
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -83,61 +83,55 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 
 
  > merge:
-constructor body 11 cachable >> 4 {
-  statement: property 12 >> 11 {
+constructor body 10 cachable >> 4 {
+  statement: property 11 >> 10 {
     name: elements
-    type: type application 13 >> 12 {
-      type: Array
-      parameters: type parameters 14 >> 13 {
-        parameter: type application 15 >> 14 {
-          type: Tuple2
-          parameters: type parameters 16 >> 15 {
-            parameter: type application 17 >> 16 {
-              type: A
-            }
-            parameter: type application 18 >> 16 {
-              type: B
-            }
-          }
+    type: type application 12 >> 11 {
+      name: Array
+      parameter: type application 13 >> 12 {
+        name: Tuple2
+        parameter: type application 14 >> 13 {
+          name: A
+        }
+        parameter: type application 15 >> 13 {
+          name: B
         }
       }
     }
-    value: application 19 >> 12 {
+    value: application 16 >> 11 {
       name: emptyArray
     }
   }
-  statement: property 20 >> 11 {
+  statement: property 17 >> 10 {
     name: hash
-    type: type application 21 >> 20 {
-      type: Function1
-      parameters: type parameters 22 >> 21 {
-        parameter: type application 23 >> 22 {
-          type: A
-        }
-        parameter: type application 24 >> 22 {
-          type: Integer
-        }
+    type: type application 18 >> 17 {
+      name: Function1
+      parameter: type application 19 >> 18 {
+        name: A
+      }
+      parameter: type application 20 >> 18 {
+        name: Integer
       }
     }
-    value: application 25 >> 20 {
+    value: application 21 >> 17 {
       name: hash
     }
   }
-  statement: expression statement 39 >> 11 {
-    expression: application 40 >> 39 {
+  statement: expression statement 34 >> 10 {
+    expression: application 35 >> 34 {
       name: multiply
-      argument: application 41 >> 40 {
+      argument: application 36 >> 35 {
         name: plus
-        argument: application 42 >> 41 {
+        argument: application 37 >> 36 {
           value: 1
           name: integer
         }
-        argument: application 43 >> 41 {
+        argument: application 38 >> 36 {
           value: 2
           name: integer
         }
       }
-      argument: application 44 >> 40 {
+      argument: application 39 >> 35 {
         value: 3
         name: integer
       }

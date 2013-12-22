@@ -125,28 +125,32 @@ object UnitSyntax {
       }
 
       val typeApplication: NamedRule = rule("type application") {
-        sequence(
-          capture("type", choice(token("Id"), token("type variable"))),
-          optional(capture("module", token("module"))),
-          optional(branch("parameters", typeParameters))
-        )
+        new TypeSyntax(
+          Rule.expression(branch("operand", canonicalTypeApplication))
+        ).rule
       }
 
-      val typeParameters: NamedRule = rule("type parameters") {
-        sequence(
-          token("<"),
-          oneOrMore(branch("parameter", typeApplication.permissive), token(",")),
-          token(">").permissive
-        )
-      }
+      val canonicalTypeApplication =
+        rule("canonical type application").produce("type application") {
+          sequence(
+            capture("name", choice(token("Id"), token("type variable"))),
+            optional(capture("module", token("module"))),
+            optional(sequence(
+              token("<"),
+              oneOrMore(
+                branch("parameter", typeApplication.permissive),
+                separator = token(",")
+              ),
+              token(">").permissive
+            ))
+          )
+        }
 
       val expression: NamedRule = rule("expression") {
-        val operators = new Operators(Rule.expression(branch("operand",
-          operand.permissive("operand required"))))
-
-        operators.define()
-
-        operators.rule
+        new ExpressionSyntax(
+          Rule.expression(branch("operand",
+            operand.permissive("operand required")))
+        ).rule
       }
 
       val array = rule("array").transform {

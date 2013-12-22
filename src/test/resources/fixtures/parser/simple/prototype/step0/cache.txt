@@ -11,7 +11,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean {
 >>>
 
  > create:
-Node 36. Fragment:
+Node 31. Fragment:
 export type Hashtable<A, B>(hash: Function1<A, Integer>) {
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;
@@ -23,7 +23,7 @@ export function contains(this: Hashtable<A, B>, element: A): Boolean <<<{
 
 
  > create:
-Node 11. Fragment:
+Node 10. Fragment:
 export type Hashtable<A, B>(hash: Function1<A, Integer>) <<<{
     this.elements: Array<Tuple2<A, B>> = emptyArray();
     this.hash: Function1<A, Integer> = hash;

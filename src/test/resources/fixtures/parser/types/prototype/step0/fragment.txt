@@ -1,0 +1,12 @@
+ > invalidate:
+<<<function test(
+    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
+    param2: Foo & (Bar & Baz),
+    param3: Foo & (Bar | Baz),
+    param4: #(Foo, Bar => Baz),
+    param5: #(Foo => Bar),
+    param6: #Bar,
+    param7: #Bar[] & #Baz
+);
+>>>
+

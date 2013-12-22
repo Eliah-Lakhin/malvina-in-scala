@@ -5,5 +5,9 @@
 
     "expressions": {
         "steps": 2
+    },
+
+    "types": {
+        "steps": 1
     }
 }

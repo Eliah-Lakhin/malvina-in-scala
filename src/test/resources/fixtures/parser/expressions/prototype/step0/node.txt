@@ -1993,7 +1993,7 @@ compilation unit 1 {
       statement: expression statement 57 >> 4 {
         expression: function 58 >> 57 {
           result: type application 59 >> 58 {
-            type: String
+            name: String
           }
           parameter: function parameter 60 >> 58 {
             type: Integer
