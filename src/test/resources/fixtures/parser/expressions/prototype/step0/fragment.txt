@@ -41,7 +41,7 @@
 
 
  > create:
-function test() <<<{
+#test() <<<{
     a + b * c;
 
     (d + e) * f;
@@ -73,7 +73,7 @@ function test() <<<{
 
 
  > invalidate:
-<<<function test() {
+<<<#test() {
     a + b * c;
 
     (d + e) * f;

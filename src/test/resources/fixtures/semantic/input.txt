@@ -1,0 +1,5 @@
+import @hello-world;
+
+export #func1() {}
+
+export #func2();

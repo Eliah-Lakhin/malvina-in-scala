@@ -1,6 +1,6 @@
  > invalidate:
 Node 1. Fragment:
-<<<function test() {
+<<<#test() {
     a + b * c;
 
     (d + e) * f;
@@ -32,52 +32,8 @@ Node 1. Fragment:
 >>>
 
  > create:
-Node 71. Fragment:
-...13
-    s.t(u, v);
-
-    w.x() = y;
-
-    w.x[] = y;
-
-    #x, y => x + y;
-
-    #(x: Integer, y: Float => String) {return x + y;};
-
-    x >> #<<<{
-        return y;
-    }>>>;
-
-    [1, 2, 3].map(#x => x + 10);
-}
-
-
- > create:
-Node 62. Fragment:
-...11
-    r++;
-
-    s.t(u, v);
-
-    w.x() = y;
-
-    w.x[] = y;
-
-    #x, y => x + y;
-
-    #(x: Integer, y: Float => String) <<<{return x + y;}>>>;
-
-    x >> #{
-        return y;
-    };
-
-    [1, 2, 3].map(#x => x + 10);
-}
-
-
- > create:
-Node 4. Fragment:
-function test() <<<{
+Node 3. Fragment:
+#test() <<<{
     a + b * c;
 
     (d + e) * f;
@@ -106,5 +62,49 @@ function test() <<<{
 
     [1, 2, 3].map(#x => x + 10);
 }>>>
+
+
+ > create:
+Node 61. Fragment:
+...11
+    r++;
+
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) <<<{return x + y;}>>>;
+
+    x >> #{
+        return y;
+    };
+
+    [1, 2, 3].map(#x => x + 10);
+}
+
+
+ > create:
+Node 70. Fragment:
+...13
+    s.t(u, v);
+
+    w.x() = y;
+
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #<<<{
+        return y;
+    }>>>;
+
+    [1, 2, 3].map(#x => x + 10);
+}
 
 

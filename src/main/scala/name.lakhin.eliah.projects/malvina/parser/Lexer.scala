@@ -111,13 +111,12 @@ object Lexer {
       )
     ).mutable
 
-    keywords("true", "false", "null", "lazy", "if", "else", "loop", "break",
-      "return", "new", "this", "export", "type", "function", "static",
-      "translate", "in", "module", "import")
+    keywords("true", "false", "null", "if", "else", "loop", "break", "return",
+      "export", "import")
 
     terminals("{", "}", "[", "]", "(", ")", ">=", "<=", "==", ">", "<", "=>",
       "->", "=", "+", "-", "|", "&", ";", ":", "?", "!=", "!", ",", ".", "++",
-      "--", "/*", "*/", "*", "/", "//", "#")
+      "--", "/*", "*/", "*", "/", "//", "#", "$")
 
     tokenizer
   }

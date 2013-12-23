@@ -1,32 +1,32 @@
  > create:
-export type Hashtable<A, B>(hash: Function1<A, Integer>) <<<{
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+export Hashtable<A, B>(hash: Function1<A, Integer>) <<<{
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 }>>>
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean <<<{
+export #contains(this: Hashtable<A, B>, element: A): Boolean <<<{
     return false;
 }>>>
 
 
  > invalidate:
-<<<export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+<<<export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 >>>

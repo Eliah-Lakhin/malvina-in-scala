@@ -1,6 +1,6 @@
  > create:
-declaration:2
-<<<function test(
+function declaration:2
+<<<#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -12,21 +12,8 @@ declaration:2
 
 
  > create:
-method parameters:3
-function test<<<(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-)>>>;
-
-
- > create:
-method parameter:4
-function test(
+parameter:3
+#test(
     <<<param1: Foo & Boo?[] & Bar | Baz & Goo[][]>>>,
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -38,164 +25,8 @@ function test(
 
 
  > create:
-type application:5
-function test(
-    param1: <<<Foo & Boo?[] & Bar | Baz & Goo[][]>>>,
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:6
-function test(
-    param1: <<<Foo & Boo?[] & Bar>>> | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:7
-function test(
-    param1: <<<Foo>>> & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:8
-function test(
-    param1: Foo & <<<Boo?[]>>> & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:9
-function test(
-    param1: Foo & <<<Boo?>>>[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:10
-function test(
-    param1: Foo & <<<Boo>>>?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:11
-function test(
-    param1: Foo & Boo?[] & <<<Bar>>> | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:12
-function test(
-    param1: Foo & Boo?[] & Bar | <<<Baz & Goo[][]>>>,
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:13
-function test(
-    param1: Foo & Boo?[] & Bar | <<<Baz>>> & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:14
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & <<<Goo[][]>>>,
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:15
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & <<<Goo[]>>>[],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:16
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & <<<Goo>>>[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:17
-function test(
+parameter:4
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     <<<param2: Foo & (Bar & Baz)>>>,
     param3: Foo & (Bar | Baz),
@@ -207,73 +38,8 @@ function test(
 
 
  > create:
-type application:18
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: <<<Foo & (Bar & Baz)>>>,
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:19
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: <<<Foo>>> & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:20
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & <<<(Bar & Baz)>>>,
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:21
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (<<<Bar>>> & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:22
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & <<<Baz>>>),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:23
-function test(
+parameter:5
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     <<<param3: Foo & (Bar | Baz)>>>,
@@ -285,73 +51,8 @@ function test(
 
 
  > create:
-type application:24
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: <<<Foo & (Bar | Baz)>>>,
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:25
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: <<<Foo>>> & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:26
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & <<<(Bar | Baz)>>>,
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:27
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (<<<Bar>>> | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:28
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | <<<Baz>>>),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:29
-function test(
+parameter:6
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -363,60 +64,8 @@ function test(
 
 
  > create:
-application:30
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: <<<#(Foo, Bar => Baz)>>>,
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:31
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(<<<Foo>>>, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:32
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, <<<Bar>>> => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:33
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => <<<Baz>>>),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:34
-function test(
+parameter:7
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -428,47 +77,8 @@ function test(
 
 
  > create:
-application:35
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: <<<#(Foo => Bar)>>>,
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:36
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(<<<Foo>>> => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:37
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => <<<Bar>>>),
-    param6: #Bar,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:38
-function test(
+parameter:8
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -480,34 +90,8 @@ function test(
 
 
  > create:
-application:39
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: <<<#Bar>>>,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-type application:40
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #<<<Bar>>>,
-    param7: #Bar[] & #Baz
-);
-
-
- > create:
-method parameter:41
-function test(
+parameter:9
+#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),
@@ -518,230 +102,37 @@ function test(
 );
 
 
- > create:
-application:42
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: <<<#Bar[] & #Baz>>>
-);
-
-
- > create:
-type application:43
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #<<<Bar[] & #Baz>>>
-);
-
-
- > create:
-type application:44
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #<<<Bar[]>>> & #Baz
-);
-
-
- > create:
-type application:45
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #<<<Bar>>>[] & #Baz
-);
-
-
- > create:
-application:46
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & <<<#Baz>>>
-);
-
-
- > create:
-type application:47
-function test(
-    param1: Foo & Boo?[] & Bar | Baz & Goo[][],
-    param2: Foo & (Bar & Baz),
-    param3: Foo & (Bar | Baz),
-    param4: #(Foo, Bar => Baz),
-    param5: #(Foo => Bar),
-    param6: #Bar,
-    param7: #Bar[] & #<<<Baz>>>
-);
-
-
  > merge:
 compilation unit 1 {
-  declaration: declaration 2 >> 1 {
+  declaration: function declaration 2 >> 1 {
     name: test
-    declaration: function
-    parameters: method parameters 3 >> 2 {
-      parameter: method parameter 4 >> 3 {
-        name: param1
-        type: type application 5 >> 4 {
-          name: Variant
-          operator: |
-          parameter: type application 6 >> 5 {
-            name: Tuple
-            operator: &
-            parameter: type application 7 >> 6 {
-              name: Foo
-            }
-            parameter: type application 8 >> 6 {
-              name: Array
-              parameter: type application 9 >> 8 {
-                name: Nullable
-                parameter: type application 10 >> 9 {
-                  name: Boo
-                }
-              }
-            }
-            parameter: type application 11 >> 6 {
-              name: Bar
-            }
-          }
-          parameter: type application 12 >> 5 {
-            name: Tuple
-            operator: &
-            parameter: type application 13 >> 12 {
-              name: Baz
-            }
-            parameter: type application 14 >> 12 {
-              name: Array
-              parameter: type application 15 >> 14 {
-                name: Array
-                parameter: type application 16 >> 15 {
-                  name: Goo
-                }
-              }
-            }
-          }
-        }
-      }
-      parameter: method parameter 17 >> 3 {
-        name: param2
-        type: type application 18 >> 17 {
-          name: Tuple
-          operator: &
-          parameter: type application 19 >> 18 {
-            name: Foo
-          }
-          parameter: type application 20 >> 18 {
-            name: Tuple
-            operator: group
-            parameter: type application 21 >> 20 {
-              name: Bar
-            }
-            parameter: type application 22 >> 20 {
-              name: Baz
-            }
-          }
-        }
-      }
-      parameter: method parameter 23 >> 3 {
-        name: param3
-        type: type application 24 >> 23 {
-          name: Tuple
-          operator: &
-          parameter: type application 25 >> 24 {
-            name: Foo
-          }
-          parameter: type application 26 >> 24 {
-            name: Variant
-            operator: group
-            parameter: type application 27 >> 26 {
-              name: Bar
-            }
-            parameter: type application 28 >> 26 {
-              name: Baz
-            }
-          }
-        }
-      }
-      parameter: method parameter 29 >> 3 {
-        name: param4
-        type: application 30 >> 29 {
-          name: Function
-          parameter: type application 31 >> 30 {
-            name: Foo
-          }
-          parameter: type application 32 >> 30 {
-            name: Bar
-          }
-          parameter: type application 33 >> 30 {
-            name: Baz
-          }
-        }
-      }
-      parameter: method parameter 34 >> 3 {
-        name: param5
-        type: application 35 >> 34 {
-          name: Function
-          parameter: type application 36 >> 35 {
-            name: Foo
-          }
-          parameter: type application 37 >> 35 {
-            name: Bar
-          }
-        }
-      }
-      parameter: method parameter 38 >> 3 {
-        name: param6
-        type: application 39 >> 38 {
-          name: Function
-          parameter: type application 40 >> 39 {
-            name: Bar
-          }
-        }
-      }
-      parameter: method parameter 41 >> 3 {
-        name: param7
-        type: application 42 >> 41 {
-          name: Function
-          parameter: type application 43 >> 42 {
-            name: Tuple
-            operator: &
-            parameter: type application 44 >> 43 {
-              name: Array
-              parameter: type application 45 >> 44 {
-                name: Bar
-              }
-            }
-            parameter: application 46 >> 43 {
-              name: Function
-              parameter: type application 47 >> 46 {
-                name: Baz
-              }
-            }
-          }
-        }
-      }
+    parameter: parameter 3 >> 2 {
+      type: Foo & Boo?[] & Bar | Baz & Goo[][]
+      name: param1
+    }
+    parameter: parameter 4 >> 2 {
+      type: Foo & (Bar & Baz)
+      name: param2
+    }
+    parameter: parameter 5 >> 2 {
+      type: Foo & (Bar | Baz)
+      name: param3
+    }
+    parameter: parameter 6 >> 2 {
+      type: #(Foo, Bar => Baz)
+      name: param4
+    }
+    parameter: parameter 7 >> 2 {
+      type: #(Foo => Bar)
+      name: param5
+    }
+    parameter: parameter 8 >> 2 {
+      type: #Bar
+      name: param6
+    }
+    parameter: parameter 9 >> 2 {
+      type: #Bar[] & #Baz
+      name: param7
     }
   }
 }

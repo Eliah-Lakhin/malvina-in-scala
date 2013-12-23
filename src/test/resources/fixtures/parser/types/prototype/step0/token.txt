@@ -1,4 +1,4 @@
-function~0~ `id`(
+#~0~`id`(
     `id`: `Id` & `Id`?[] & `Id` | `Id` & `Id`[][],
     `id`: `Id` & (`Id` & `Id`),
     `id`: `Id` & (`Id` | `Id`),

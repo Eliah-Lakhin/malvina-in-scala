@@ -1,6 +1,6 @@
  > create:
-declaration:2
-<<<function test() {
+function declaration:2
+<<<#test() {
     a + b * c;
 
     (d + e) * f;
@@ -32,23 +32,8 @@ declaration:2
 
 
  > create:
-method parameters:3
-function test<<<()>>> {
-    a + b * c;
-
-    (d + e) * f;
-
-    g - h.i.j[k, l];
-
-    m = n;
-
-    o.p = q;
-
-12...
-
- > create:
-block:4 cachable
-function test() <<<{
+block:3 cachable
+#test() <<<{
     a + b * c;
 
     (d + e) * f;
@@ -80,8 +65,8 @@ function test() <<<{
 
 
  > create:
-expression statement:5
-function test() {
+expression statement:4
+#test() {
     <<<a + b * c;>>>
 
     (d + e) * f;
@@ -96,8 +81,8 @@ function test() {
 13...
 
  > create:
-application:6
-function test() {
+application:5
+#test() {
     <<<a + b * c>>>;
 
     (d + e) * f;
@@ -112,8 +97,8 @@ function test() {
 13...
 
  > create:
-application:7
-function test() {
+application:6
+#test() {
     <<<a>>> + b * c;
 
     (d + e) * f;
@@ -128,8 +113,8 @@ function test() {
 13...
 
  > create:
-application:8
-function test() {
+application:7
+#test() {
     a + <<<b * c>>>;
 
     (d + e) * f;
@@ -144,8 +129,8 @@ function test() {
 13...
 
  > create:
-application:9
-function test() {
+application:8
+#test() {
     a + <<<b>>> * c;
 
     (d + e) * f;
@@ -160,8 +145,8 @@ function test() {
 13...
 
  > create:
-application:10
-function test() {
+application:9
+#test() {
     a + b * <<<c>>>;
 
     (d + e) * f;
@@ -176,8 +161,8 @@ function test() {
 13...
 
  > create:
-expression statement:11
-function test() {
+expression statement:10
+#test() {
     a + b * c;
 
     <<<(d + e) * f;>>>
@@ -194,8 +179,8 @@ function test() {
 15...
 
  > create:
-application:12
-function test() {
+application:11
+#test() {
     a + b * c;
 
     <<<(d + e) * f>>>;
@@ -212,8 +197,8 @@ function test() {
 15...
 
  > create:
-application:13
-function test() {
+application:12
+#test() {
     a + b * c;
 
     <<<(d + e)>>> * f;
@@ -230,8 +215,8 @@ function test() {
 15...
 
  > create:
-application:14
-function test() {
+application:13
+#test() {
     a + b * c;
 
     (<<<d>>> + e) * f;
@@ -248,8 +233,8 @@ function test() {
 15...
 
  > create:
-application:15
-function test() {
+application:14
+#test() {
     a + b * c;
 
     (d + <<<e>>>) * f;
@@ -266,8 +251,8 @@ function test() {
 15...
 
  > create:
-application:16
-function test() {
+application:15
+#test() {
     a + b * c;
 
     (d + e) * <<<f>>>;
@@ -284,8 +269,8 @@ function test() {
 15...
 
  > create:
-expression statement:17
-function test() {
+expression statement:16
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -304,8 +289,8 @@ function test() {
 17...
 
  > create:
-application:18
-function test() {
+application:17
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -324,8 +309,8 @@ function test() {
 17...
 
  > create:
-application:19
-function test() {
+application:18
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -344,8 +329,8 @@ function test() {
 17...
 
  > create:
-application:20
-function test() {
+application:19
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -364,8 +349,8 @@ function test() {
 17...
 
  > create:
-application:21
-function test() {
+application:20
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -384,8 +369,8 @@ function test() {
 17...
 
  > create:
-application:22
-function test() {
+application:21
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -404,8 +389,8 @@ function test() {
 17...
 
  > create:
-application:23
-function test() {
+application:22
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -424,8 +409,8 @@ function test() {
 17...
 
  > create:
-application:24
-function test() {
+application:23
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -444,8 +429,8 @@ function test() {
 17...
 
  > create:
-application:25
-function test() {
+application:24
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -464,8 +449,8 @@ function test() {
 17...
 
  > create:
-expression statement:26
-function test() {
+expression statement:25
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -486,8 +471,8 @@ function test() {
 19...
 
  > create:
-application:27
-function test() {
+application:26
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -508,8 +493,8 @@ function test() {
 19...
 
  > create:
-application:28
-function test() {
+application:27
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -530,8 +515,8 @@ function test() {
 19...
 
  > create:
-expression statement:29
-function test() {
+expression statement:28
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -554,8 +539,8 @@ function test() {
 21...
 
  > create:
-application:30
-function test() {
+application:29
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -578,8 +563,8 @@ function test() {
 21...
 
  > create:
-application:31
-function test() {
+application:30
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -602,8 +587,8 @@ function test() {
 21...
 
  > create:
-application:32
-function test() {
+application:31
+#test() {
     a + b * c;
 
     (d + e) * f;
@@ -626,7 +611,7 @@ function test() {
 21...
 
  > create:
-expression statement:33
+expression statement:32
 ...1
     a + b * c;
 
@@ -652,7 +637,7 @@ expression statement:33
 23...
 
  > create:
-application:34
+application:33
 ...1
     a + b * c;
 
@@ -678,7 +663,7 @@ application:34
 23...
 
  > create:
-application:35
+application:34
 ...1
     a + b * c;
 
@@ -704,7 +689,7 @@ application:35
 23...
 
  > create:
-expression statement:36
+expression statement:35
 ...3
     (d + e) * f;
 
@@ -730,7 +715,7 @@ expression statement:36
 25...
 
  > create:
-application:37
+application:36
 ...3
     (d + e) * f;
 
@@ -756,7 +741,7 @@ application:37
 25...
 
  > create:
-application:38
+application:37
 ...3
     (d + e) * f;
 
@@ -782,7 +767,7 @@ application:38
 25...
 
  > create:
-application:39
+application:38
 ...3
     (d + e) * f;
 
@@ -808,7 +793,7 @@ application:39
 25...
 
  > create:
-application:40
+application:39
 ...3
     (d + e) * f;
 
@@ -834,7 +819,7 @@ application:40
 25...
 
  > create:
-expression statement:41
+expression statement:40
 ...5
     g - h.i.j[k, l];
 
@@ -860,7 +845,7 @@ expression statement:41
 27...
 
  > create:
-application:42
+application:41
 ...5
     g - h.i.j[k, l];
 
@@ -886,7 +871,7 @@ application:42
 27...
 
  > create:
-application:43
+application:42
 ...5
     g - h.i.j[k, l];
 
@@ -912,7 +897,7 @@ application:43
 27...
 
  > create:
-application:44
+application:43
 ...5
     g - h.i.j[k, l];
 
@@ -938,7 +923,7 @@ application:44
 27...
 
  > create:
-expression statement:45
+expression statement:44
 ...7
     m = n;
 
@@ -964,7 +949,7 @@ expression statement:45
 29...
 
  > create:
-application:46
+application:45
 ...7
     m = n;
 
@@ -990,7 +975,7 @@ application:46
 29...
 
  > create:
-application:47
+application:46
 ...7
     m = n;
 
@@ -1016,7 +1001,7 @@ application:47
 29...
 
  > create:
-application:48
+application:47
 ...7
     m = n;
 
@@ -1042,7 +1027,7 @@ application:48
 29...
 
  > create:
-application:49
+application:48
 ...7
     m = n;
 
@@ -1068,7 +1053,7 @@ application:49
 29...
 
  > create:
-expression statement:50
+expression statement:49
 ...9
     o.p = q;
 
@@ -1093,7 +1078,7 @@ expression statement:50
 
 
  > create:
-function:51
+function:50
 ...9
     o.p = q;
 
@@ -1118,7 +1103,7 @@ function:51
 
 
  > create:
-function parameter:52
+parameter:51
 ...9
     o.p = q;
 
@@ -1143,7 +1128,7 @@ function parameter:52
 
 
  > create:
-function parameter:53
+parameter:52
 ...9
     o.p = q;
 
@@ -1168,7 +1153,7 @@ function parameter:53
 
 
  > create:
-application:54
+application:53
 ...9
     o.p = q;
 
@@ -1193,7 +1178,7 @@ application:54
 
 
  > create:
-application:55
+application:54
 ...9
     o.p = q;
 
@@ -1218,7 +1203,7 @@ application:55
 
 
  > create:
-application:56
+application:55
 ...9
     o.p = q;
 
@@ -1243,7 +1228,7 @@ application:56
 
 
  > create:
-expression statement:57
+expression statement:56
 ...11
     r++;
 
@@ -1266,7 +1251,7 @@ expression statement:57
 
 
  > create:
-function:58
+function:57
 ...11
     r++;
 
@@ -1289,7 +1274,7 @@ function:58
 
 
  > create:
-type application:59
+type application:58
 ...11
     r++;
 
@@ -1312,7 +1297,7 @@ type application:59
 
 
  > create:
-function parameter:60
+parameter:59
 ...11
     r++;
 
@@ -1335,7 +1320,7 @@ function parameter:60
 
 
  > create:
-function parameter:61
+parameter:60
 ...11
     r++;
 
@@ -1358,7 +1343,7 @@ function parameter:61
 
 
  > create:
-block:62 cachable
+block:61 cachable
 ...11
     r++;
 
@@ -1381,7 +1366,7 @@ block:62 cachable
 
 
  > create:
-return:63
+return:62
 ...11
     r++;
 
@@ -1404,7 +1389,7 @@ return:63
 
 
  > create:
-application:64
+application:63
 ...11
     r++;
 
@@ -1427,7 +1412,7 @@ application:64
 
 
  > create:
-application:65
+application:64
 ...11
     r++;
 
@@ -1450,7 +1435,7 @@ application:65
 
 
  > create:
-application:66
+application:65
 ...11
     r++;
 
@@ -1473,7 +1458,7 @@ application:66
 
 
  > create:
-expression statement:67
+expression statement:66
 ...13
     s.t(u, v);
 
@@ -1494,7 +1479,7 @@ expression statement:67
 
 
  > create:
-application:68
+application:67
 ...13
     s.t(u, v);
 
@@ -1515,7 +1500,7 @@ application:68
 
 
  > create:
-application:69
+application:68
 ...13
     s.t(u, v);
 
@@ -1536,7 +1521,7 @@ application:69
 
 
  > create:
-function:70
+function:69
 ...13
     s.t(u, v);
 
@@ -1557,7 +1542,7 @@ function:70
 
 
  > create:
-block:71 cachable
+block:70 cachable
 ...13
     s.t(u, v);
 
@@ -1578,7 +1563,7 @@ block:71 cachable
 
 
  > create:
-return:72
+return:71
 ...14
 
     w.x() = y;
@@ -1598,7 +1583,7 @@ return:72
 
 
  > create:
-application:73
+application:72
 ...14
 
     w.x() = y;
@@ -1618,7 +1603,7 @@ application:73
 
 
  > create:
-expression statement:74
+expression statement:73
 ...17
     w.x[] = y;
 
@@ -1635,7 +1620,7 @@ expression statement:74
 
 
  > create:
-application:75
+application:74
 ...17
     w.x[] = y;
 
@@ -1652,7 +1637,7 @@ application:75
 
 
  > create:
-application:76
+application:75
 ...17
     w.x[] = y;
 
@@ -1669,7 +1654,7 @@ application:76
 
 
  > create:
-application:77
+application:76
 ...17
     w.x[] = y;
 
@@ -1682,6 +1667,23 @@ application:77
     };
 
     [<<<1, 2>>>, 3].map(#x => x + 10);
+}
+
+
+ > create:
+application:77
+...17
+    w.x[] = y;
+
+    #x, y => x + y;
+
+    #(x: Integer, y: Float => String) {return x + y;};
+
+    x >> #{
+        return y;
+    };
+
+    [<<<1>>>, 2, 3].map(#x => x + 10);
 }
 
 
@@ -1715,7 +1717,7 @@ application:79
         return y;
     };
 
-    [<<<1>>>, 2, 3].map(#x => x + 10);
+    [1, <<<2>>>, 3].map(#x => x + 10);
 }
 
 
@@ -1732,29 +1734,12 @@ application:80
         return y;
     };
 
-    [1, <<<2>>>, 3].map(#x => x + 10);
-}
-
-
- > create:
-application:81
-...17
-    w.x[] = y;
-
-    #x, y => x + y;
-
-    #(x: Integer, y: Float => String) {return x + y;};
-
-    x >> #{
-        return y;
-    };
-
     [1, 2, <<<3>>>].map(#x => x + 10);
 }
 
 
  > create:
-function:82
+function:81
 ...17
     w.x[] = y;
 
@@ -1771,7 +1756,7 @@ function:82
 
 
  > create:
-function parameter:83
+parameter:82
 ...17
     w.x[] = y;
 
@@ -1788,7 +1773,7 @@ function parameter:83
 
 
  > create:
-application:84
+application:83
 ...17
     w.x[] = y;
 
@@ -1805,7 +1790,7 @@ application:84
 
 
  > create:
-application:85
+application:84
 ...17
     w.x[] = y;
 
@@ -1822,7 +1807,7 @@ application:85
 
 
  > create:
-application:86
+application:85
 ...17
     w.x[] = y;
 
@@ -1840,177 +1825,175 @@ application:86
 
  > merge:
 compilation unit 1 {
-  declaration: declaration 2 >> 1 {
+  declaration: function declaration 2 >> 1 {
     name: test
-    declaration: function
-    parameters: method parameters 3 >> 2
-    body: block 4 cachable >> 2 {
-      statement: expression statement 5 >> 4 {
-        expression: application 6 >> 5 {
+    body: block 3 cachable >> 2 {
+      statement: expression statement 4 >> 3 {
+        expression: application 5 >> 4 {
           name: plus
-          argument: application 7 >> 6 {
+          argument: application 6 >> 5 {
             name: a
           }
-          argument: application 8 >> 6 {
+          argument: application 7 >> 5 {
             name: multiply
-            argument: application 9 >> 8 {
+            argument: application 8 >> 7 {
               name: b
             }
-            argument: application 10 >> 8 {
+            argument: application 9 >> 7 {
               name: c
             }
           }
         }
       }
-      statement: expression statement 11 >> 4 {
-        expression: application 12 >> 11 {
+      statement: expression statement 10 >> 3 {
+        expression: application 11 >> 10 {
           name: multiply
-          argument: application 13 >> 12 {
+          argument: application 12 >> 11 {
             name: plus
-            argument: application 14 >> 13 {
+            argument: application 13 >> 12 {
               name: d
             }
-            argument: application 15 >> 13 {
+            argument: application 14 >> 12 {
               name: e
             }
           }
-          argument: application 16 >> 12 {
+          argument: application 15 >> 11 {
             name: f
           }
         }
       }
-      statement: expression statement 17 >> 4 {
-        expression: application 18 >> 17 {
+      statement: expression statement 16 >> 3 {
+        expression: application 17 >> 16 {
           name: minus
-          argument: application 19 >> 18 {
+          argument: application 18 >> 17 {
             name: g
           }
-          argument: application 20 >> 18 {
+          argument: application 19 >> 17 {
             name: access
-            argument: application 21 >> 20 {
+            argument: application 20 >> 19 {
               name: j
-              argument: application 22 >> 21 {
+              argument: application 21 >> 20 {
                 name: i
-                argument: application 23 >> 22 {
+                argument: application 22 >> 21 {
                   name: h
                 }
               }
             }
-            argument: application 24 >> 20 {
+            argument: application 23 >> 19 {
               name: k
             }
-            argument: application 25 >> 20 {
+            argument: application 24 >> 19 {
               name: l
             }
           }
         }
       }
-      statement: expression statement 26 >> 4 {
-        expression: application 27 >> 26 {
+      statement: expression statement 25 >> 3 {
+        expression: application 26 >> 25 {
           name: m
-          argument: application 28 >> 27 {
+          argument: application 27 >> 26 {
             name: n
           }
         }
       }
-      statement: expression statement 29 >> 4 {
-        expression: application 30 >> 29 {
+      statement: expression statement 28 >> 3 {
+        expression: application 29 >> 28 {
           name: p
-          argument: application 31 >> 30 {
+          argument: application 30 >> 29 {
             name: o
           }
-          argument: application 32 >> 30 {
+          argument: application 31 >> 29 {
             name: q
           }
         }
       }
-      statement: expression statement 33 >> 4 {
-        expression: application 34 >> 33 {
+      statement: expression statement 32 >> 3 {
+        expression: application 33 >> 32 {
           name: next
-          argument: application 35 >> 34 {
+          argument: application 34 >> 33 {
             name: r
           }
         }
       }
-      statement: expression statement 36 >> 4 {
-        expression: application 37 >> 36 {
+      statement: expression statement 35 >> 3 {
+        expression: application 36 >> 35 {
           name: t
-          argument: application 38 >> 37 {
+          argument: application 37 >> 36 {
             name: s
           }
-          argument: application 39 >> 37 {
+          argument: application 38 >> 36 {
             name: u
           }
-          argument: application 40 >> 37 {
+          argument: application 39 >> 36 {
             name: v
           }
         }
       }
-      statement: expression statement 41 >> 4 {
-        expression: application 42 >> 41 {
+      statement: expression statement 40 >> 3 {
+        expression: application 41 >> 40 {
           name: x
-          argument: application 43 >> 42 {
+          argument: application 42 >> 41 {
             name: w
           }
-          argument: application 44 >> 42 {
+          argument: application 43 >> 41 {
             name: y
           }
         }
       }
-      statement: expression statement 45 >> 4 {
-        expression: application 46 >> 45 {
+      statement: expression statement 44 >> 3 {
+        expression: application 45 >> 44 {
           name: access
-          argument: application 47 >> 46 {
+          argument: application 46 >> 45 {
             name: x
-            argument: application 48 >> 47 {
+            argument: application 47 >> 46 {
               name: w
             }
           }
-          argument: application 49 >> 46 {
+          argument: application 48 >> 45 {
             name: y
           }
         }
       }
-      statement: expression statement 50 >> 4 {
-        expression: function 51 >> 50 {
-          parameter: function parameter 52 >> 51 {
+      statement: expression statement 49 >> 3 {
+        expression: function 50 >> 49 {
+          parameter: parameter 51 >> 50 {
             name: x
           }
-          parameter: function parameter 53 >> 51 {
+          parameter: parameter 52 >> 50 {
             name: y
           }
-          body: application 54 >> 51 {
+          body: application 53 >> 50 {
             name: plus
-            argument: application 55 >> 54 {
+            argument: application 54 >> 53 {
               name: x
             }
-            argument: application 56 >> 54 {
+            argument: application 55 >> 53 {
               name: y
             }
           }
         }
       }
-      statement: expression statement 57 >> 4 {
-        expression: function 58 >> 57 {
-          result: type application 59 >> 58 {
+      statement: expression statement 56 >> 3 {
+        expression: function 57 >> 56 {
+          result: type application 58 >> 57 {
             name: String
           }
-          parameter: function parameter 60 >> 58 {
+          parameter: parameter 59 >> 57 {
             type: Integer
             name: x
           }
-          parameter: function parameter 61 >> 58 {
+          parameter: parameter 60 >> 57 {
             type: Float
             name: y
           }
-          body: block 62 cachable >> 58 {
-            statement: return 63 >> 62 {
-              value: application 64 >> 63 {
+          body: block 61 cachable >> 57 {
+            statement: return 62 >> 61 {
+              value: application 63 >> 62 {
                 name: plus
-                argument: application 65 >> 64 {
+                argument: application 64 >> 63 {
                   name: x
                 }
-                argument: application 66 >> 64 {
+                argument: application 65 >> 63 {
                   name: y
                 }
               }
@@ -2018,16 +2001,16 @@ compilation unit 1 {
           }
         }
       }
-      statement: expression statement 67 >> 4 {
-        expression: application 68 >> 67 {
+      statement: expression statement 66 >> 3 {
+        expression: application 67 >> 66 {
           name: bind
-          argument: application 69 >> 68 {
+          argument: application 68 >> 67 {
             name: x
           }
-          argument: function 70 >> 68 {
-            body: block 71 cachable >> 70 {
-              statement: return 72 >> 71 {
-                value: application 73 >> 72 {
+          argument: function 69 >> 67 {
+            body: block 70 cachable >> 69 {
+              statement: return 71 >> 70 {
+                value: application 72 >> 71 {
                   name: y
                 }
               }
@@ -2035,40 +2018,40 @@ compilation unit 1 {
           }
         }
       }
-      statement: expression statement 74 >> 4 {
-        expression: application 75 >> 74 {
+      statement: expression statement 73 >> 3 {
+        expression: application 74 >> 73 {
           name: map
-          argument: application 76 >> 75 {
+          argument: application 75 >> 74 {
             name: set
-            argument: application 77 >> 76 {
+            argument: application 76 >> 75 {
               name: set
-              argument: application 78 >> 77 {
+              argument: application 77 >> 76 {
                 name: arrayOf
-                argument: application 79 >> 78 {
+                argument: application 78 >> 77 {
                   value: 1
                   name: integer
                 }
               }
-              argument: application 80 >> 77 {
+              argument: application 79 >> 76 {
                 value: 2
                 name: integer
               }
             }
-            argument: application 81 >> 76 {
+            argument: application 80 >> 75 {
               value: 3
               name: integer
             }
           }
-          argument: function 82 >> 75 {
-            parameter: function parameter 83 >> 82 {
+          argument: function 81 >> 74 {
+            parameter: parameter 82 >> 81 {
               name: x
             }
-            body: application 84 >> 82 {
+            body: application 83 >> 81 {
               name: plus
-              argument: application 85 >> 84 {
+              argument: application 84 >> 83 {
                 name: x
               }
-              argument: application 86 >> 84 {
+              argument: application 85 >> 83 {
                 value: 10
                 name: integer
               }

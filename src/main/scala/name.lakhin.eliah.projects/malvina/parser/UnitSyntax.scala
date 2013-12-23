@@ -27,27 +27,93 @@ object UnitSyntax {
       import Rule._
 
       rule("compilation unit").main {
-        oneOrMore(branch("import", importDeclaration))
-        oneOrMore(branch("declaration", declaration))
+        sequence(
+          zeroOrMore(branch("import", importDeclaration)),
+          oneOrMore(branch("declaration", choice(functionDeclaration.debug,
+            typeDeclaration.debug, static, metafunction)))
+        )
       }
 
-      val declaration = rule("declaration") {
+      val importDeclaration = rule("import") {
+        sequence(
+          token("import"),
+          capture("module", token("module")),
+          token(";").permissive
+        )
+      }
+
+      val functionDeclaration = rule("function declaration") {
         sequence(
           optional(capture("export", token("export"))),
-          choice(functionDeclaration, typeDeclaration, staticDeclaration,
-            translator, moduleDefinition)
+          token("#"),
+          capture("name", token("id")),
+          token("("),
+          zeroOrMore(branch("parameter", parameter), token(",")),
+          token(")").permissive,
+          optional(sequence(token(":"), branch("result", typeApplication))),
+          choice(branch("body", block), token(";").permissive)
+        )
+      }
+
+      val typeDeclaration = rule("type declaration") {
+        sequence(
+          optional(capture("export", token("export"))),
+          capture("name", token("Id")),
+          optional(branch("pattern", typePattern)),
+          choice(
+            sequence(
+              token("("),
+              zeroOrMore(branch("parameter", parameter), token(",")),
+              token(")").permissive,
+              branch("body", block)
+            ),
+            token(";").permissive
+          )
+        )
+      }
+
+      val static = rule("static") {
+        sequence(
+          optional(capture("export", token("export"))),
+          capture("name", token("id")),
+          sequence(token(":"), branch("result", typeApplication)).permissive,
+          sequence(token("="), branch("value", expression)).permissive,
+          token(";").permissive
+        )
+      }
+
+      val metafunction = rule("metafunction") {
+        sequence(
+          optional(capture("export", token("export"))),
+          token("$"),
+          capture("language", token("Id")),
+          optional(capture("language-module", token("module"))),
+          choice(
+            branch("function", functionReference),
+            branch("type", typeReference)
+          ),
+          choice(
+            sequence(
+              token("="),
+              branch("value", expression),
+              token(";").permissive
+            ),
+            branch("definition", block)
+          ).permissive
         )
       }
 
       val functionReference = rule("function reference") {
         sequence(
+          token("#"),
           capture("name", token("id")),
           optional(capture("module", token("module"))),
           optional(sequence(
             capture("types", token("(")),
-            zeroOrMore(branch("type", token("Id")), token(",")),
+            zeroOrMore(branch("type", typeReference), token(",")),
             token(")").permissive
-          ))
+          )),
+          optional(sequence(token(":"), branch("result", typeReference)))
         )
       }
 
@@ -63,64 +129,11 @@ object UnitSyntax {
         )
       }
 
-      val constructor = rule("constructor") {
-        sequence(
-          branch("parameters", methodParameters),
-          branch("body", constructorBody.debug)
-        )
-      }
-
-      val constructorBody = rule("constructor body").cachable {
-        sequence(
-          token("{"),
-          zeroOrMore(branch("statement", choice(propertyDefinition,
-            binaryBranching, multipleBranching, loop, returnStatement,
-            breakStatement, variableDefinition, expressionStatement))),
-          token("}").permissive
-        )
-      }
-
-      val propertyDefinition = rule("property") {
-        sequence(
-          token("this"),
-          token("."),
-          capture("name", token("id")),
-          token(":"),
-          branch("type", typeApplication),
-          token("=").permissive,
-          branch("value", expression).permissive,
-          token(";").permissive
-        )
-      }
-
       val typePattern = rule("type pattern") {
         sequence(
           token("<"),
           oneOrMore(capture("variable", token("type variable")), token(",")),
           token(">").permissive
-        )
-      }
-
-      val methodParameters: NamedRule = rule("method parameters") {
-        sequence(
-          token("("),
-          zeroOrMore(branch("parameter", methodParameter), token(",").permissive),
-          token(")").permissive
-        )
-      }
-
-      val methodParameter = rule("method parameter") {
-        sequence(
-          optional(capture("lazy", token("lazy"))),
-          capture("name", choice(token("id"), token("this"))),
-          sequence(
-            token(":"),
-            branch("type", typeApplication)
-          ).permissive,
-          optional(sequence(
-            token("="),
-            branch("value", expression)
-          ))
         )
       }
 
@@ -238,8 +251,6 @@ object UnitSyntax {
         capture("name", choice(token("true"), token("false")))
       }
 
-      val thisReference = rule("this") {token("this")}
-
       val application = rule("application") {
         sequence(
           capture("name", token("id")),
@@ -258,7 +269,7 @@ object UnitSyntax {
 
       val argument = rule("argument") {
         sequence(
-          capture("name", choice(token("id"), token("this"))),
+          capture("name", token("id")),
           token(":"),
           branch("value", expression)
         )
@@ -275,7 +286,6 @@ object UnitSyntax {
           node
       } {
         sequence(
-          token("new"),
           capture("name", token("Id")),
           optional(capture("module", token("module"))),
           token("("),
@@ -285,31 +295,20 @@ object UnitSyntax {
         )
       }
 
-      val staticAccess = rule("static").transform {
-        node =>
-          node.accessor
-            .setKind("application")
-            .setConstant("name", "instanceOf" + node.getValue("name"))
-
-          node
-      } {
-        capture("name", token("Id"))
-      }
-
       val function = rule("function") {
         sequence(
           token("#"),
           choice(
             sequence(
               token("("),
-              zeroOrMore(branch("parameter", functionParameter), token(",")),
+              zeroOrMore(branch("parameter", parameter), token(",")),
               token("=>"),
               branch("result", typeApplication),
               token(")").permissive,
               branch("body", block).permissive
             ),
             sequence(
-              oneOrMore(branch("parameter", functionParameter), token(",")),
+              oneOrMore(branch("parameter", parameter), token(",")),
               token("=>"),
               choice(
                 branch("body", expression).permissive,
@@ -321,12 +320,16 @@ object UnitSyntax {
         )
       }
 
-      val functionParameter = rule("function parameter") {
+      val parameter = rule("parameter") {
         sequence(
           capture("name", token("id")),
           optional(sequence(
             token(":"),
             capture("type", typeApplication)
+          )),
+          optional(sequence(
+            token("="),
+            branch("value", expression)
           ))
         )
       }
@@ -447,8 +450,7 @@ object UnitSyntax {
 
       val operand = subrule("operand") {
         choice(array, integer, float, string, nullLiteral, booleanLiteral,
-          thisReference, application, function, variable, instantiation,
-          staticAccess)
+          application, function, variable, instantiation)
       }
 
       val bodyStatement = rule("body statement").transform {
@@ -459,73 +461,6 @@ object UnitSyntax {
       } {
         choice(block, binaryBranching, multipleBranching, loop, returnStatement,
           breakStatement, expressionStatement)
-      }
-
-      val importDeclaration = subrule("import declaration") {
-        sequence(
-          token("import"),
-          capture("module", token("module")),
-          token(";").permissive
-        )
-      }
-
-      val functionDeclaration = subrule("function declaration") {
-        sequence(
-          capture("declaration", token("function")),
-          capture("name", token("id")),
-          branch("parameters", methodParameters),
-          optional(sequence(token(":"), branch("result", typeApplication))),
-          choice(branch("body", block), token(";").permissive)
-        )
-      }
-
-      val typeDeclaration = subrule("type declaration") {
-        sequence(
-          capture("declaration", token("type")),
-          capture("name", token("Id")),
-          optional(branch("pattern", typePattern)),
-          choice(branch("constructor", constructor), token(";").permissive)
-        )
-      }
-
-      val staticDeclaration = subrule("static declaration") {
-        sequence(
-          capture("declaration", token("static")),
-          capture("name", token("Id")),
-          sequence(token(":"), branch("result", typeApplication)).permissive,
-          sequence(token("="), branch("value", expression)).permissive,
-          token(";").permissive
-        )
-      }
-
-      val translator = subrule("translator") {
-        sequence(
-          capture("declaration", token("translate")),
-          choice(
-            branch("function", functionReference),
-            branch("type", typeReference),
-            capture("module", token("module"))
-          ),
-          sequence(
-            token("in"),
-            capture("language", token("Id"))
-          ).permissive,
-          choice(
-            sequence(
-              token("="),
-              branch("value", expression),
-              token(";").permissive
-            ),
-            branch("definition", block)
-          ).permissive
-        )
-      }
-
-      val moduleDefinition = subrule("module definition") {
-        sequence(
-          capture("declaration", token("module")),
-          branch("definition", block)
-        )
       }
     }
   }

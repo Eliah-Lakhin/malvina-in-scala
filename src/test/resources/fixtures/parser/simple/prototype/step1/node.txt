@@ -1,137 +1,118 @@
  > create:
-expression statement:34
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+expression statement:17
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     <<<(1 + 2) * 3;>>>
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-application:35
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+application:18
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     <<<(1 + 2) * 3>>>;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-application:36
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+application:19
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     <<<(1 + 2)>>> * 3;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-application:37
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+application:20
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     (<<<1>>> + 2) * 3;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-application:38
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+application:21
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     (1 + <<<2>>>) * 3;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > create:
-application:39
-export type Hashtable<A, B>(hash: Function1<A, Integer>) {
-    this.elements: Array<Tuple2<A, B>> = emptyArray();
-    this.hash: Function1<A, Integer> = hash;
+application:22
+export Hashtable<A, B>(hash: Function1<A, Integer>) {
+    elements: Array<Tuple2<A, B>> = emptyArray();
+    hash: Function1<A, Integer> = hash;
 
     (1 + 2) * <<<3>>>;
 }
 
-export function contains(this: Hashtable<A, B>, element: A): Boolean {
+export #contains(this: Hashtable<A, B>, element: A): Boolean {
     return false;
 }
 
 
  > merge:
-constructor body 10 cachable >> 4 {
-  statement: property 11 >> 10 {
+block 5 cachable >> 2 {
+  statement: variable definition 6 >> 5 {
+    type: Array<Tuple2<A, B>>
     name: elements
-    type: type application 12 >> 11 {
-      name: Array
-      parameter: type application 13 >> 12 {
-        name: Tuple2
-        parameter: type application 14 >> 13 {
-          name: A
-        }
-        parameter: type application 15 >> 13 {
-          name: B
-        }
-      }
-    }
-    value: application 16 >> 11 {
+    value: application 7 >> 6 {
       name: emptyArray
     }
   }
-  statement: property 17 >> 10 {
+  statement: variable definition 8 >> 5 {
+    type: Function1<A, Integer>
     name: hash
-    type: type application 18 >> 17 {
-      name: Function1
-      parameter: type application 19 >> 18 {
-        name: A
-      }
-      parameter: type application 20 >> 18 {
-        name: Integer
-      }
-    }
-    value: application 21 >> 17 {
+    value: application 9 >> 8 {
       name: hash
     }
   }
-  statement: expression statement 34 >> 10 {
-    expression: application 35 >> 34 {
+  statement: expression statement 17 >> 5 {
+    expression: application 18 >> 17 {
       name: multiply
-      argument: application 36 >> 35 {
+      argument: application 19 >> 18 {
         name: plus
-        argument: application 37 >> 36 {
+        argument: application 20 >> 19 {
           value: 1
           name: integer
         }
-        argument: application 38 >> 36 {
+        argument: application 21 >> 19 {
           value: 2
           name: integer
         }
       }
-      argument: application 39 >> 35 {
+      argument: application 22 >> 18 {
         value: 3
         name: integer
       }

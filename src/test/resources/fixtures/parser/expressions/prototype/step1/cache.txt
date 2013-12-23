@@ -1,5 +1,5 @@
  > invalidate:
-Node 71. Fragment:
+Node 70. Fragment:
 ...13
     s.t(u, v);
 

@@ -1,5 +1,5 @@
  > invalidate:
-<<<function test(
+<<<#test(
     param1: Foo & Boo?[] & Bar | Baz & Goo[][],
     param2: Foo & (Bar & Baz),
     param3: Foo & (Bar | Baz),

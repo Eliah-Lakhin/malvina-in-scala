@@ -1,0 +1,15 @@
+import 2 >> 1 {
+  module: @hello-world
+}
+
+function declaration 3 >> 1 {
+  export: export
+  name: func1
+  body: block 4 cachable >> 3
+}
+
+function declaration 5 >> 1 {
+  export: export
+  name: func2
+}
+
