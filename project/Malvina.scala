@@ -49,7 +49,7 @@ object Malvina extends Build {
 
         testOptions in Test += Tests.Argument("-oD"),
 
-        mainClass := Some("name.lakhin.eliah.projects.malvina.Compiler"),
+        mainClass := Some("name.lakhin.eliah.projects.malvina.Console"),
 
         publishMavenStyle := true,
         pomIncludeRepository := { _ => false },

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina.parser
+package malvina
 
 import name.lakhin.eliah.projects.papacarlo.syntax.rules.ExpressionRule
 import name.lakhin.eliah.projects.papacarlo.syntax.Node

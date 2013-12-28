@@ -16,11 +16,15 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.papacarlo.Syntax
+final class Unit(compiler: Compiler) {
+  private val parser = new Parser
 
-final class Parser {
-  val lexer = Lexer()
-  val syntax = new Syntax(lexer)
+  def update(code: String) {
+    parser.lexer.input(code)
+  }
 
-  UnitSyntax(syntax)
+  for (root <- parser.syntax.getRootNode)
+    root.onAddBranch.bind {
+      branch =>
+    }
 }

@@ -16,29 +16,9 @@
 package name.lakhin.eliah.projects
 package malvina
 
-final class CompilationUnit {
-  var log: String = ""
-
-  private val parser = new Parser
-
-  def update(code: String) {
-    parser.lexer.input(code)
-
-    val errors = parser.syntax.getErrors
-
-    if (errors.nonEmpty) {
-      log += "Errors:\n"
-      for (error <- errors)
-        log += "  " + error.from + ": " + error.description + "\n"
-      log += "\n"
-    }
-  }
-
-  def getErrors = parser.syntax.getErrors
-
-  for (root <- parser.syntax.getRootNode) {
-    root.onAddBranch.bind {
-      branch => log += branch.prettyPrint() + "\n\n"
-    }
-  }
+object Kind {
+  val Import = "import"
+  val FunctionDeclaration = "function declaration"
+  val TypeDeclaration = "type declaration"
+  val Static = "static"
 }

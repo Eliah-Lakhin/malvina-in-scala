@@ -16,8 +16,32 @@
 package name.lakhin.eliah.projects
 package malvina
 
-object Compiler {
-  def main(arguments: Array[String]) {
-    println("Malvina compiler in Scala")
+import scala.collection.immutable.IntMap
+
+final class Compiler {
+  private var typeDeclarations = Map.empty[String, TypeDeclaration]
+  private var functionDeclarations = Map.empty[String, FunctionDeclaration]
+  private var references = Map.empty[String, IntMap[Reference]]
+  private var units = Map.empty[String, Unit]
+
+  def input(unitName: String, code: String) {
+    for (unit <- units.get(unitName).orElse {
+      if (code.nonEmpty) {
+        val unit = new Unit(this)
+
+        units += unitName -> unit
+
+        Some(unit)
+      }
+      else None
+    }) {
+      unit.update(code)
+
+      if (code.isEmpty) units -= unitName
+    }
+  }
+
+  private def introduceType(module: String, name: String, parameters: Int) {
+
   }
 }

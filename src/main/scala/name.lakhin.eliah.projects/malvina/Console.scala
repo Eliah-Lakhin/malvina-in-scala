@@ -16,11 +16,8 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.papacarlo.Syntax
-
-final class Parser {
-  val lexer = Lexer()
-  val syntax = new Syntax(lexer)
-
-  UnitSyntax(syntax)
+object Console {
+  def main(arguments: Array[String]) {
+    println("Malvina PL compiler")
+  }
 }

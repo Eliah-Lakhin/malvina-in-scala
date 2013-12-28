@@ -14,7 +14,7 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina.parser
+package malvina
 
 import name.lakhin.eliah.projects.papacarlo.Syntax
 import name.lakhin.eliah.projects.papacarlo.syntax.{Node, Rule}
@@ -25,16 +25,17 @@ object UnitSyntax {
     new {
       import syntax._
       import Rule._
+      import Kind._
 
       rule("compilation unit").main {
         sequence(
           zeroOrMore(branch("import", importDeclaration)),
-          oneOrMore(branch("declaration", choice(functionDeclaration.debug,
-            typeDeclaration.debug, static, metafunction)))
+          oneOrMore(branch("declaration", choice(functionDeclaration,
+            typeDeclaration, static, metafunction)))
         )
       }
 
-      val importDeclaration = rule("import") {
+      val importDeclaration = rule(Import) {
         sequence(
           token("import"),
           capture("module", token("module")),
@@ -42,7 +43,7 @@ object UnitSyntax {
         )
       }
 
-      val functionDeclaration = rule("function declaration") {
+      val functionDeclaration = rule(FunctionDeclaration) {
         sequence(
           optional(capture("export", token("export"))),
           token("#"),
@@ -55,7 +56,7 @@ object UnitSyntax {
         )
       }
 
-      val typeDeclaration = rule("type declaration") {
+      val typeDeclaration = rule(TypeDeclaration) {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("Id")),
@@ -72,7 +73,7 @@ object UnitSyntax {
         )
       }
 
-      val static = rule("static") {
+      val static = rule(Static) {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("id")),

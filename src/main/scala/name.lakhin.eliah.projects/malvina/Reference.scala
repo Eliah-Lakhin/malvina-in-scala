@@ -16,11 +16,4 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.papacarlo.Syntax
-
-final class Parser {
-  val lexer = Lexer()
-  val syntax = new Syntax(lexer)
-
-  UnitSyntax(syntax)
-}
+final case class Reference(unit: String, memberId: Int)
