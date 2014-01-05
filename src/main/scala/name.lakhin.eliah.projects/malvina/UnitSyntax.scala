@@ -25,7 +25,6 @@ object UnitSyntax {
     new {
       import syntax._
       import Rule._
-      import Kind._
 
       rule("compilation unit").main {
         sequence(
@@ -35,7 +34,7 @@ object UnitSyntax {
         )
       }
 
-      val importDeclaration = rule(Import) {
+      val importDeclaration = rule(Kind.Import) {
         sequence(
           token("import"),
           capture("module", token("module")),
@@ -43,7 +42,7 @@ object UnitSyntax {
         )
       }
 
-      val functionDeclaration = rule(FunctionDeclaration) {
+      val functionDeclaration = rule(Kind.FunctionDeclaration) {
         sequence(
           optional(capture("export", token("export"))),
           token("#"),
@@ -56,7 +55,7 @@ object UnitSyntax {
         )
       }
 
-      val typeDeclaration = rule(TypeDeclaration) {
+      val typeDeclaration = rule(Kind.TypeDeclaration) {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("Id")),
@@ -73,7 +72,7 @@ object UnitSyntax {
         )
       }
 
-      val static = rule(Static) {
+      val static = rule(Kind.Static) {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("id")),
@@ -262,17 +261,8 @@ object UnitSyntax {
             token(">")
           )),
           token("("),
-          zeroOrMore(branch("argument", choice(argument, expression)).required,
-            token(",")),
+          zeroOrMore(branch("argument", expression).required, token(",")),
           token(")").permissive
-        )
-      }
-
-      val argument = rule("argument") {
-        sequence(
-          capture("name", token("id")),
-          token(":"),
-          branch("value", expression)
         )
       }
 
@@ -290,8 +280,7 @@ object UnitSyntax {
           capture("name", token("Id")),
           optional(capture("module", token("module"))),
           token("("),
-          zeroOrMore(branch("argument", choice(argument, expression)).required,
-            token(",")),
+          zeroOrMore(branch("argument", expression).required, token(",")),
           token(")").permissive
         )
       }
@@ -327,10 +316,6 @@ object UnitSyntax {
           optional(sequence(
             token(":"),
             capture("type", typeApplication)
-          )),
-          optional(sequence(
-            token("="),
-            branch("value", expression)
           ))
         )
       }

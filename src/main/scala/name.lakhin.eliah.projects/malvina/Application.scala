@@ -16,7 +16,6 @@
 package name.lakhin.eliah.projects
 package malvina
 
-final case class TypeDeclaration(module: String,
-                                 name: String,
-                                 parameters: Int,
-                                 reference: Option[Reference] = None)
+final case class Application(name: String,
+                             parameters: List[Application],
+                             resolution: Option[Declaration] = None)

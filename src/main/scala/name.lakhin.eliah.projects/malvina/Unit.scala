@@ -16,15 +16,22 @@
 package name.lakhin.eliah.projects
 package malvina
 
-final class Unit(compiler: Compiler) {
+final class Unit(name: String, compiler: Compiler) {
   private val parser = new Parser
 
   def update(code: String) {
     parser.lexer.input(code)
   }
 
+  private[malvina] def invalidateMembers(ids: Set[Int]) {
+
+  }
+
   for (root <- parser.syntax.getRootNode)
     root.onAddBranch.bind {
       branch =>
+        branch.getKind match {
+          case Kind.TypeDeclaration =>
+        }
     }
 }

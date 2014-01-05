@@ -16,4 +16,11 @@
 package name.lakhin.eliah.projects
 package malvina
 
-final case class Reference(unit: String, memberId: Int)
+final case class Declaration(module: String,
+                             name: String,
+                             variables: List[String],
+                             parameters: List[Application],
+                             result: Option[Application] = None,
+                             reference: (String, Int)) {
+  val key = Semantic.key(name, parameters.size)
+}
