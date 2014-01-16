@@ -17,7 +17,7 @@ package name.lakhin.eliah.projects
 package malvina.test
 
 import name.lakhin.eliah.projects.papacarlo.test.utils.ParserSpec
-import name.lakhin.eliah.projects.malvina.{Lexer, Parser}
+import name.lakhin.eliah.projects.malvina.syntax.{Parser, Lexer}
 
 class MalvinaParser extends ParserSpec("parser") {
   override def lexer = Lexer()

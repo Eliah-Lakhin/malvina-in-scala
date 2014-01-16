@@ -14,13 +14,11 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.semantic
 
-final case class Declaration(module: String,
-                             name: String,
-                             variables: List[String],
-                             parameters: List[Application],
-                             result: Option[Application] = None,
-                             reference: (String, Int)) {
-  val key = Semantic.key(name, parameters.size)
-}
+sealed abstract case class TypeApplication()
+
+case class VariableType(name: String) extends TypeApplication()
+
+case class SpecificType(description: Description,
+                        arguments: List[TypeApplication])

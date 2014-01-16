@@ -14,8 +14,8 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.semantic
 
-final case class Application(name: String,
-                             parameters: List[Application],
-                             resolution: Option[Declaration] = None)
+final class Namespace {
+
+}

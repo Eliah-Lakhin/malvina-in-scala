@@ -17,21 +17,33 @@ package name.lakhin.eliah.projects
 package malvina
 
 final class Compiler {
-  private[malvina] var units = Map.empty[String, Unit]
-  private[malvina] var semantic = new Semantic(this)
+  private var units = Map.empty[String, Unit]
+
+  def input(codes: Map[String, String]) {
+    for ((unitName, code) <- codes)
+      for (unit <- units.get(unitName).orElse {
+        if (code.nonEmpty) {
+          val unit = new Unit(unitName, this)
+          units += unitName -> unit
+          Some(unit)
+        }
+        else None
+      }) {
+        unit.update(code)
+
+        if (code.isEmpty) units -= unitName
+      }
+
+    processSemantic()
+  }
 
   def input(unitName: String, code: String) {
-    for (unit <- units.get(unitName).orElse {
-      if (code.nonEmpty) {
-        val unit = new Unit(unitName, this)
-        units += unitName -> unit
-        Some(unit)
-      }
-      else None
-    }) {
-      unit.update(code)
-
-      if (code.isEmpty) units -= unitName
-    }
+    input(Map(unitName -> code))
   }
+
+  private def processSemantic() {
+
+  }
+
+  private[malvina] def lookup
 }

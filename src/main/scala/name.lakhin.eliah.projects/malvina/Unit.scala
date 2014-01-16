@@ -16,6 +16,8 @@
 package name.lakhin.eliah.projects
 package malvina
 
+import name.lakhin.eliah.projects.malvina.syntax.Parser
+
 final class Unit(name: String, compiler: Compiler) {
   private val parser = new Parser
 
@@ -23,15 +25,10 @@ final class Unit(name: String, compiler: Compiler) {
     parser.lexer.input(code)
   }
 
-  private[malvina] def invalidateMembers(ids: Set[Int]) {
+  for (root <- parser.syntax.getRootNode) root.onAddBranch.bind {
+    branch => branch.getKind match {
+      case "type declaration" =>
 
-  }
-
-  for (root <- parser.syntax.getRootNode)
-    root.onAddBranch.bind {
-      branch =>
-        branch.getKind match {
-          case Kind.TypeDeclaration =>
-        }
     }
+  }
 }

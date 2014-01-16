@@ -14,13 +14,6 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.semantic
 
-import name.lakhin.eliah.projects.papacarlo.Syntax
-
-final class Parser {
-  val lexer = Lexer()
-  val syntax = new Syntax(lexer)
-
-  UnitSyntax(syntax)
-}
+final case class Reference(unit: String, node: Int)

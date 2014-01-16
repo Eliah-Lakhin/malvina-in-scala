@@ -14,7 +14,7 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.syntax
 
 import name.lakhin.eliah.projects.papacarlo.syntax.rules.{RecoveryRule,
   ExpressionRule}

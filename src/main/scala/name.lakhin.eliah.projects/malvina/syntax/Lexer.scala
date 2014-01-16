@@ -14,7 +14,7 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.syntax
 
 import name.lakhin.eliah.projects.papacarlo.lexis._
 
@@ -56,7 +56,7 @@ object Lexer {
     ).mutable
 
     tokenCategory(
-      "type variable",
+      "variable",
       sequence(rangeOf('A', 'Z'), zeroOrMore(rangeOf('0', '9')))
     ).mutable
 

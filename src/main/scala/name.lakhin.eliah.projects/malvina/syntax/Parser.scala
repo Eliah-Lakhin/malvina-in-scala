@@ -14,11 +14,13 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.syntax
 
-object Kind {
-  val Import = "import"
-  val FunctionDeclaration = "function declaration"
-  val TypeDeclaration = "type declaration"
-  val Static = "static"
+import name.lakhin.eliah.projects.papacarlo.Syntax
+
+final class Parser {
+  val lexer = Lexer()
+  val syntax = new Syntax(lexer)
+
+  UnitSyntax(syntax)
 }

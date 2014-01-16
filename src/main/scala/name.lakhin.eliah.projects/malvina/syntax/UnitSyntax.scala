@@ -14,7 +14,7 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.syntax
 
 import name.lakhin.eliah.projects.papacarlo.Syntax
 import name.lakhin.eliah.projects.papacarlo.syntax.{Node, Rule}
@@ -34,7 +34,7 @@ object UnitSyntax {
         )
       }
 
-      val importDeclaration = rule(Kind.Import) {
+      val importDeclaration = rule("import") {
         sequence(
           token("import"),
           capture("module", token("module")),
@@ -42,7 +42,7 @@ object UnitSyntax {
         )
       }
 
-      val functionDeclaration = rule(Kind.FunctionDeclaration) {
+      val functionDeclaration = rule("function declaration") {
         sequence(
           optional(capture("export", token("export"))),
           token("#"),
@@ -55,11 +55,15 @@ object UnitSyntax {
         )
       }
 
-      val typeDeclaration = rule(Kind.TypeDeclaration) {
+      val typeDeclaration = rule("type declaration") {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("Id")),
-          optional(branch("pattern", typePattern)),
+          optional(sequence(
+            token("<"),
+            oneOrMore(capture("variable", token("variable")), token(",")),
+            token(">").permissive
+          )),
           choice(
             sequence(
               token("("),
@@ -72,7 +76,7 @@ object UnitSyntax {
         )
       }
 
-      val static = rule(Kind.Static) {
+      val static = rule("static") {
         sequence(
           optional(capture("export", token("export"))),
           capture("name", token("id")),
@@ -129,14 +133,6 @@ object UnitSyntax {
         )
       }
 
-      val typePattern = rule("type pattern") {
-        sequence(
-          token("<"),
-          oneOrMore(capture("variable", token("type variable")), token(",")),
-          token(">").permissive
-        )
-      }
-
       val typeApplication: NamedRule = rule("type application") {
         new TypeSyntax(
           Rule.expression(branch("operand", canonicalTypeApplication))
@@ -146,7 +142,7 @@ object UnitSyntax {
       val canonicalTypeApplication =
         rule("canonical type application").produce("type application") {
           sequence(
-            capture("name", choice(token("Id"), token("type variable"))),
+            capture("name", choice(token("Id"), token("variable"))),
             optional(capture("module", token("module"))),
             optional(sequence(
               token("<"),
