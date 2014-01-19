@@ -16,17 +16,19 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-sealed abstract case class Description(id: Int,
-                                       source: Option[Reference],
+sealed abstract case class Description(source: Option[Reference],
                                        module: String,
-                                       name: String)
+                                       name: String) {
+  def key: String
+}
 
-final case class TypeDescription(override val id: Int = -1,
-                                 override val source: Option[Reference] = None,
+final case class TypeDescription(override val source: Option[Reference] = None,
                                  override val module: String,
                                  override val name: String,
                                  parameters: Int)
-  extends Description(id, source, module, name) {
+  extends Description(source, module, name) {
+
+  override def key = Description.key(name, parameters)
 
   override def equals(description: Any) =
     description match {
@@ -39,15 +41,16 @@ final case class TypeDescription(override val id: Int = -1,
     }
 }
 
-final case class FunctionDescription(override val id: Int = -1,
-                                     override val source: Option[Reference]
+final case class FunctionDescription(override val source: Option[Reference]
                                        = None,
                                      override val module: String,
                                      override val name: String,
                                      variables: List[String],
                                      parameters: List[TypeApplication],
                                      result: TypeApplication)
-  extends Description(id, source, module, name) {
+  extends Description(source, module, name) {
+
+  override def key = Description.key(name, parameters.size)
 
   override def equals(description: Any) =
     description match {
@@ -59,4 +62,8 @@ final case class FunctionDescription(override val id: Int = -1,
 
       case _ => false
     }
+}
+
+object Description {
+  def key(symbol: String, parameters: Int) = symbol + "/" + parameters
 }
