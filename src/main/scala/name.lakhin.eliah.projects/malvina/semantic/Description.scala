@@ -65,5 +65,5 @@ final case class FunctionDescription(override val source: Option[Reference]
 }
 
 object Description {
-  def key(symbol: String, parameters: Int) = symbol + "/" + parameters
+  def key(name: String, parameters: Int) = name + "/" + parameters
 }

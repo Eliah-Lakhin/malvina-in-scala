@@ -16,4 +16,9 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-final case class Reference(unit: String, node: Int, kind: String)
+protected[Unit] abstract class Member {
+  def phase: String
+
+  def resolve()
+}
+

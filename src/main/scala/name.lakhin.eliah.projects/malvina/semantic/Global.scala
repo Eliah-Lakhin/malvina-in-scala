@@ -77,7 +77,31 @@ final class Global {
     affected -= reference
   }
 
+  def lookup(name: String, parameters: Int) =
+    groups
+      .getOrElse(Description.key(name, parameters), Nil)
+      .flatMap(descriptions.get)
+
+  def affect(reference: Reference) {
+    affected += reference
+  }
+
   private def affect(key: String) {
     for (references <- this.references.get(key)) affected ++= references
+  }
+
+  private[Compiler] def getAffected(phase: String) = {
+    var selected = List.empty[Reference]
+
+    affected = affected.filter {
+      candidate =>
+        val matches = candidate.kind == phase
+
+        if (matches) selected ::= candidate
+
+        !matches
+    }
+
+    selected
   }
 }

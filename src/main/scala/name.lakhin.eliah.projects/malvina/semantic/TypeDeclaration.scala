@@ -16,4 +16,19 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-final case class Reference(unit: String, node: Int, kind: String)
+import name.lakhin.eliah.projects.papacarlo.syntax.{Issue, Node}
+import name.lakhin.eliah.projects.papacarlo.utils.Registry
+
+final class TypeDeclaration(unit: String,
+                            node: Node,
+                            global: Global,
+                            errors: Registry[Issue]) extends Member {
+  override val phase = "type"
+  private val reference = Reference(unit, node.getId, phase)
+
+  global.affect(reference)
+
+  def resolve() {
+
+  }
+}

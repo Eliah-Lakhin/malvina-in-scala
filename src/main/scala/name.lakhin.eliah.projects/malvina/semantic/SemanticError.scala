@@ -16,4 +16,4 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-final case class Reference(unit: String, node: Int, kind: String)
+final case class SemanticError(unit: String, blameNode: Int)

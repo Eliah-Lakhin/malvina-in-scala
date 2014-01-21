@@ -17,18 +17,36 @@ package name.lakhin.eliah.projects
 package malvina
 
 import name.lakhin.eliah.projects.malvina.syntax.Parser
+import name.lakhin.eliah.projects.malvina.semantic._
 
-final class Unit(name: String, compiler: Compiler) {
+final class Unit(name: String, global: Global) {
   private val parser = new Parser
+  private var members = Map.empty[Int, List[Member]]
 
   def update(code: String) {
     parser.lexer.input(code)
   }
 
-  for (root <- parser.syntax.getRootNode) root.onAddBranch.bind {
-    branch => branch.getKind match {
-      case "type declaration" =>
+  for (root <- parser.syntax.getRootNode)
+    root.onAddBranch.bind {
+      branch =>
+        branch.getKind match {
+          case "type declaration" =>
+            var nodeMembers = List(new TypeDeclaration(name, branch, global))
 
+            if (branch.hasBranch("body")) {
+            }
+
+            members += branch.getId -> nodeMembers
+
+          case _ =>
+        }
     }
+
+  private[Compiler] def resolve(references: List[Reference]) {
+    for (reference <- references;
+         nodeMembers <- members.get(reference.node);
+         member <- nodeMembers.filter(_.phase == reference.kind))
+      member.resolve()
   }
 }
