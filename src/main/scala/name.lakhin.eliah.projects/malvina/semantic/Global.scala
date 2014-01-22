@@ -95,7 +95,7 @@ final class Global {
 
     affected = affected.filter {
       candidate =>
-        val matches = candidate.kind == phase
+        val matches = candidate.phase == phase
 
         if (matches) selected ::= candidate
 

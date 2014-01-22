@@ -16,13 +16,11 @@
 package name.lakhin.eliah.projects
 package malvina
 
-import name.lakhin.eliah.projects.malvina.semantic.{SemanticError, Global}
-import name.lakhin.eliah.projects.papacarlo.utils.Registry
+import name.lakhin.eliah.projects.malvina.semantic.{Unit, Global}
 
 final class Compiler {
   private var units = Map.empty[String, Unit]
-  private[semantic] val global = new Global
-  private[semantic] val semanticErrors = new Registry[SemanticError]
+  private val global = new Global
 
   def input(codes: Map[String, String]) {
     for ((unitName, code) <- codes)
@@ -36,7 +34,10 @@ final class Compiler {
       }) {
         unit.update(code)
 
-        if (code.isEmpty) units -= unitName
+        if (code.isEmpty) {
+          unit.release()
+          units -= unitName
+        }
       }
 
     processSemantic()

@@ -16,9 +16,11 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-protected[Unit] abstract class Member {
+protected[malvina] abstract class Member {
   def phase: String
 
   def resolve()
+
+  def release()
 }
 

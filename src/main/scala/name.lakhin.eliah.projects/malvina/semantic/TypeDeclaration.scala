@@ -16,19 +16,40 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-import name.lakhin.eliah.projects.papacarlo.syntax.{Issue, Node}
-import name.lakhin.eliah.projects.papacarlo.utils.Registry
+import name.lakhin.eliah.projects.papacarlo.syntax.Node
 
-final class TypeDeclaration(unit: String,
-                            node: Node,
-                            global: Global,
-                            errors: Registry[Issue]) extends Member {
+final class TypeDeclaration(unit: Unit, node: Node) extends Member {
   override val phase = "type"
-  private val reference = Reference(unit, node.getId, phase)
+  private val reference = Reference(unit.name, node.getId, phase)
+  private var description = Option.empty[(Int, TypeDescription)]
 
-  global.affect(reference)
+  unit.global.affect(reference)
 
-  def resolve() {
+  node.onRemove.bind {_ => release()}
 
+  override def resolve() {
+    val description = TypeDescription(
+      source = Some(reference),
+      module = "this",
+      name = node.getValue("name"),
+      parameters = node.getValues("variable").size
+    )
+
+    this.description match {
+      case Some(Pair(id, oldDescription)) =>
+        if (oldDescription != description) {
+          release()
+          this.description =
+            Some(unit.global.register(description) -> description)
+        }
+
+      case None =>
+        this.description =
+          Some(unit.global.register(description) -> description)
+    }
+  }
+
+  override def release() {
+    for ((id, description) <- description) unit.global.deregister(id)
   }
 }

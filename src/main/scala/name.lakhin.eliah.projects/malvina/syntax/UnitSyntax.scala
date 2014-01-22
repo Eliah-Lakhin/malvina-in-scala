@@ -47,6 +47,11 @@ object UnitSyntax {
           optional(capture("export", token("export"))),
           token("#"),
           capture("name", token("id")),
+          optional(sequence(
+            token("<"),
+            oneOrMore(capture("variable", token("variable")), token(",")),
+            token(">").permissive
+          )),
           token("("),
           zeroOrMore(branch("parameter", parameter), token(",")),
           token(")").permissive,

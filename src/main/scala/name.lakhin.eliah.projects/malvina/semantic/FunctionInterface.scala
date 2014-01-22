@@ -16,4 +16,30 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-final case class Reference(unit: String, nodeId: Int, phase: String)
+import name.lakhin.eliah.projects.papacarlo.syntax.Node
+
+final class FunctionInterface(unit: Unit, node: Node) extends Member {
+  override val phase = "interface"
+  private val reference = Reference(unit.name, node.getId, phase)
+  private var descriptions = Map.empty[String, (Int, FunctionDescription)]
+  private var errors = Set.empty[Int]
+
+  override def resolve() {
+    releaseErrors()
+
+    node.getKind match {
+      case "function declaration" =>
+
+    }
+  }
+
+  override def release() {
+    for ((id, description) <- descriptions.values) unit.global.deregister(id)
+    releaseErrors()
+  }
+
+  private def releaseErrors() {
+    errors.foreach(unit.errors.remove)
+    errors = Set.empty
+  }
+}

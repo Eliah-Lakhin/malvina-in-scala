@@ -14,14 +14,15 @@
    limitations under the License.
 */
 package name.lakhin.eliah.projects
-package malvina
+package malvina.semantic
 
 import name.lakhin.eliah.projects.malvina.syntax.Parser
-import name.lakhin.eliah.projects.malvina.semantic._
+import name.lakhin.eliah.projects.papacarlo.utils.Registry
 
-final class Unit(name: String, global: Global) {
+final class Unit(val name: String, val global: Global) {
   private val parser = new Parser
-  private var members = Map.empty[Int, List[Member]]
+  private var members = Map.empty[Int, Map[String, Member]]
+  private[semantic] var errors = new Registry[SemanticError]
 
   def update(code: String) {
     parser.lexer.input(code)
@@ -32,21 +33,32 @@ final class Unit(name: String, global: Global) {
       branch =>
         branch.getKind match {
           case "type declaration" =>
-            var nodeMembers = List(new TypeDeclaration(name, branch, global))
+            var members = Map(pair(new TypeDeclaration(this, branch)))
 
-            if (branch.hasBranch("body")) {
-            }
+            if (branch.hasBranch("body"))
+              members += pair(new FunctionInterface(this, branch))
 
-            members += branch.getId -> nodeMembers
+            this.members += branch.getId -> members
+
+          case "function declaration" =>
+
 
           case _ =>
         }
     }
 
+  private def pair(member: Member) = member.phase -> member
+
+  private[Compiler] def release() {
+    for (member <- members.values.flatten) member._2.release()
+    errors = new Registry[SemanticError]
+  }
+
   private[Compiler] def resolve(references: List[Reference]) {
     for (reference <- references;
-         nodeMembers <- members.get(reference.node);
-         member <- nodeMembers.filter(_.phase == reference.kind))
+         member <- members
+           .get(reference.nodeId)
+           .flatMap(_.get(reference.phase)))
       member.resolve()
   }
 }
