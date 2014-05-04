@@ -16,4 +16,4 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-final case class SemanticError(unit: String, blameNode: Int)
+final case class SemanticError(unit: String, nodeId: Int, message: String)

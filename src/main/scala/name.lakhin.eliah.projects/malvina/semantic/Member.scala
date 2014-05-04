@@ -16,11 +16,34 @@
 package name.lakhin.eliah.projects
 package malvina.semantic
 
-protected[malvina] abstract class Member {
+import name.lakhin.eliah.projects.papacarlo.syntax.Node
+
+protected[malvina] abstract class Member(val unit: Unit, val node: Node) {
+  val reference = Reference(unit.name, node.getId, phase)
+  protected var errors = Set.empty[Int]
+  protected var descriptions = Map.empty[String, (Int, TypeDescription)]
+
   def phase: String
 
   def resolve()
 
-  def release()
+  def release() {
+    for ((id, description) <- descriptions.values) unit.global.deregister(id)
+    releaseErrors()
+  }
+
+  protected final def releaseDescriptions(descriptions: Map[String, (Int,
+    TypeDescription)]) {
+    for ((id, description) <- descriptions.values) unit.global.deregister(id)
+  }
+
+  protected final def releaseErrors() {
+    errors.foreach(unit.errors.remove)
+    errors = Set.empty
+  }
+
+  protected final def error(message: String) {
+    errors += unit.errors.add(SemanticError(unit.name, node.getId, message))
+  }
 }
 
